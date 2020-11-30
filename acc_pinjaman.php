@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 if (isset($_GET['act'])) {
-
+    //act
     if ($_GET['act'] == 'acc') {
         $idPinjaman = $_GET['ID_Pinjaman'];
         $sql_p = mysqli_query($konek, "SELECT * FROM pinjaman WHERE ID_Pinjaman='$idPinjaman'");

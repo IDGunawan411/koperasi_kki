@@ -43,7 +43,6 @@ if (isset($_GET['act'])) {
                                             Denda='',
                                             Telat_Denda='',
                                             Status_Angsuran='Belum Lunas'
-                                            
                                             WHERE ID_Angsuran='$ID_Angsuran'");
         echo "<script>document.location.href = 'angsuran.php?ID_Pinjaman=$src_id';</script>";
     }
