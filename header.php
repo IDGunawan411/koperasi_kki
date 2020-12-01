@@ -156,86 +156,95 @@ function hari($date)
         <header class="header-top" header-theme="light">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
-                    <?php if($_SESSION['Level']=='Petugas'){ ?>
-                    <div class="top-menu d-flex align-items-center">
-                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-                        <div class="header-search">
-                            <div class="input-group">
-                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
-                                <input type="text" class="form-control">
-                                <a>Selamat Datang <b class="text-dark ml-2"><?= $_SESSION['Nama_Lengkap']; ?></b></a>
-                                <!-- <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button> -->
+                    <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+                        <div class="top-menu d-flex align-items-center">
+                            <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                            <div class="header-search">
+                                <div class="input-group">
+                                    <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                                    <input type="text" class="form-control">
+                                    <a>Selamat Datang <b class="text-dark ml-2"><?= $_SESSION['Nama_Lengkap']; ?></b></a>
+                                    <!-- <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button> -->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php }else{ ?>
-                    <div class="top-menu d-flex align-items-center">
-                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-                        <a><b class="text-dark ml-2"><?= $_SESSION['Nama_Lengkap']; ?></b></a>
-                        <div class="header-search">
-                            <div class="input-group">
-                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
-                                <!-- <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button> -->
+                    <?php } else { ?>
+                        <div class="top-menu d-flex align-items-center">
+                            <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                            <a><b class="text-dark ml-2"><?= $_SESSION['Nama_Lengkap']; ?></b></a>
+                            <div class="header-search">
+                                <div class="input-group">
+                                    <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                                    <!-- <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button> -->
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php } ?>
                     <div class="top-menu d-flex align-items-center">
-                        <?php if($_SESSION['Level']=='Petugas'){ ?>
-                        <div class="dropdown">
-                            <?php 
-                                $ps=mysqli_query($konek,"SELECT COUNT(ID_Simpanan) as total_ps FROM simpanan WHERE Status_Simpanan='Menunggu'");
-                                $dps=mysqli_fetch_array($ps);
+                        <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+                            <div class="dropdown">
+                                <?php
+                                $ps = mysqli_query($konek, "SELECT COUNT(ID_Simpanan) as total_ps FROM simpanan WHERE Status_Simpanan='Menunggu'");
+                                $dps = mysqli_fetch_array($ps);
                                 $total_ps = $dps['total_ps'];
-                            ?>
-                            <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ik ik-bell"></i><span class="badge bg-danger"><?= $total_ps; ?></span></button>
-                            <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
-                                <h4 class="header">Notifications</h4>
-                                <div class="notifications-wrap">
-                                    <?php 
-                                        $qs=mysqli_query($konek,"SELECT * FROM simpanan WHERE Status_Simpanan='Menunggu'");
-                                        while($ds=mysqli_fetch_array($qs)){ 
-                                        if($ds['Jenis_Simpanan']=='Simpanan Wajib'){$simpanan="warning";}
-                                        else{$simpanan="primary";}
-                                    ?>
-                                        <a href="pengajuan_simpanan_acc.php" class="media">
-                                            <span class="media-body">
-                                                <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
-                                                <span class="media-content h6 text-dark font-weight-bold"><?= $ds['ID_Tabungan']; ?> - </span> 
-                                                <span class="media-content h6 text-<?= $simpanan; ?>"><?= $ds['Jenis_Simpanan']; ?></span>
-                                            </span>
-                                        </a>
-                                    <?php } ?>
+                                ?>
+                                <p></p>
+                                <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ik ik-bell"></i><span class="badge bg-danger"><?= $total_ps; ?></span></button>
+                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
+                                    <h4 class="header">Notifications</h4>
+                                    <div class="notifications-wrap">
+                                        <?php
+                                        $qs = mysqli_query($konek, "SELECT * FROM simpanan WHERE Status_Simpanan='Menunggu'");
+                                        while ($ds = mysqli_fetch_array($qs)) {
+                                            if ($ds['Jenis_Simpanan'] == 'Simpanan Wajib') {
+                                                $simpanan = "warning";
+                                            } else {
+                                                $simpanan = "primary";
+                                            }
+                                        ?>
+                                            <a href="pengajuan_simpanan_acc.php" class="media">
+                                                <span class="media-body">
+                                                    <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
+                                                    <span class="media-content h6 text-dark font-weight-bold"><?= $ds['ID_Tabungan']; ?> - </span>
+                                                    <span class="media-content h6 text-<?= $simpanan; ?>"><?= $ds['Jenis_Simpanan']; ?></span>
+                                                </span>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
                                 </div>
-                                <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
                             </div>
-                        </div>
-                        <?php }else{ ?>
-                        <div class="dropdown">
-                            <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ik ik-bell"></i><span class="badge bg-danger">1</span></button>
-                            <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
-                                <h4 class="header">Notifications</h4>
-                                <div class="notifications-wrap">
-                                    <?php 
-                                        $qa=mysqli_query($konek,"SELECT * FROM angsuran INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota 
+                        <?php } else { ?>
+                            <div class="dropdown">
+                                <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ik ik-bell"></i><span class="badge bg-danger">1</span></button>
+                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
+                                    <h4 class="header">Notifications</h4>
+                                    <div class="notifications-wrap">
+                                        <?php
+                                        $qa = mysqli_query($konek, "SELECT * FROM angsuran INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota 
                                         INNER JOIN user on user.ID_User = anggota.ID_User WHERE user.ID_User='$_SESSION[ID_User]'");
-                                        while($da=mysqli_fetch_array($qa)){ 
-                                        if($da['Jatuh_Tempo']=='2020-12-23' && $da['Status_Angsuran']=='Belum Lunas'){$Jatuh_Tempo = " - Jatuh Tempo";$JT_Text="text-danger";}
-                                        else{$Jatuh_Tempo = "";$JT_Text="text-dark";}
-                                    ?>
-                                        <a href="#" class="media">
-                                            <span class="media-body">
-                                                <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
-                                                <span class="media-content h6 <?= $JT_Text; ?> font-weight-bold"><?= $da['ID_Angsuran'].$Jatuh_Tempo; ?></span> 
-                                            </span>
-                                        </a>
-                                    <?php } ?>
+                                        while ($da = mysqli_fetch_array($qa)) {
+                                            if ($da['Jatuh_Tempo'] == '2020-12-23' && $da['Status_Angsuran'] == 'Belum Lunas') {
+                                                $Jatuh_Tempo = " - Jatuh Tempo";
+                                                $JT_Text = "text-danger";
+                                            } else {
+                                                $Jatuh_Tempo = "";
+                                                $JT_Text = "text-dark";
+                                            }
+                                        ?>
+                                            <a href="#" class="media">
+                                                <span class="media-body">
+                                                    <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
+                                                    <span class="media-content h6 <?= $JT_Text; ?> font-weight-bold"><?= $da['ID_Angsuran'] . $Jatuh_Tempo; ?></span>
+                                                </span>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
                                 </div>
-                                <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
                             </div>
-                        </div>
                         <?php } ?>
                         <!-- <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button> -->
                         <div class="dropdown">
