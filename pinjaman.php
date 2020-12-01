@@ -22,22 +22,22 @@ function rp($angka)
 <div class="main-content">
     <div class="container-fluid">
 
-    <?php if($_SESSION['Level']=='Petugas'){ ?>
-        <ol class="breadcrumb mb-4" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
-            <li class="breadcrumb-item no-drop active">Pinjaman</li>
-            <li class="ml-auto active font-weight-bold">Pinjaman</li>
-        </ol>
-    <?php }else{ ?>
-        <ol class="breadcrumb" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="ml-auto active font-weight-bold">Peminjaman</li>
-        </ol>
-    <?php } ?>
+        <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+            <ol class="breadcrumb mb-4" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
+                <li class="breadcrumb-item no-drop active">Pinjaman</li>
+                <li class="ml-auto active font-weight-bold">Pinjaman</li>
+            </ol>
+        <?php } else { ?>
+            <ol class="breadcrumb" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="ml-auto active font-weight-bold">Peminjaman</li>
+            </ol>
+        <?php } ?>
 
         <div class="row">
-            <?php if($_SESSION['Level']=='Petugas'){ ?>
+            <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -101,20 +101,20 @@ function rp($angka)
             <?php } else { ?>
                 <div class="col-md-12">
                     <a href="tambah_pinjaman.php" data-toggle="tooltip" data-placement="top" title="Minta Pengajuan Pinjaman">
-                    <button class="mb-10 btn btn-sm ik ik-plus bg-primary text-white"></button></a>
+                        <button class="mb-10 btn btn-sm ik ik-plus bg-primary text-white"></button></a>
 
                     <?php
-                        $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota) WHERE ID_Anggota = '$da[ID_Anggota]'  ORDER BY ID_Pinjaman ASC");
-                        while ($p = mysqli_fetch_array($sql)) {
+                    $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota) WHERE ID_Anggota = '$da[ID_Anggota]'  ORDER BY ID_Pinjaman ASC");
+                    while ($p = mysqli_fetch_array($sql)) {
                         $color = ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'text-success' : 'text-danger');
                     ?>
                         <div class="widget border shadow-sm" style="margin-bottom:2px">
                             <div class="widget-header bg-dark text-white">
-                                <h3 class="widget-title h5 font-weight-bold">- <?= $p['ID_Pinjaman']?> -</h3>
+                                <h3 class="widget-title h5 font-weight-bold">- <?= $p['ID_Pinjaman'] ?> -</h3>
                                 <div class="widget-tools pull-right">
                                     <!-- Modal Info Penarikan -->
                                     <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal"></button></a>
-                                    <button type="button" class="btn btn-sm btn-widget-tool minimize-widget text-white ik ik-plus"></button>
+                                    <button type="button" class="btn btn-sm btn-widget-tool minimize-widget text-white ik ik-minus"></button>
                                 </div>
                             </div>
                             <div class="widget-body" style="padding: 0px 10px;">
@@ -127,12 +127,12 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
                                         <td>Besar Pinjaman</td>
-                                            <td><?= rp($p['Besar_Pinjaman']); ?></td>
+                                        <td><?= rp($p['Besar_Pinjaman']); ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-list text-warning"></i></td>
                                         <td>Angsuran</td>
-                                            <td><a href="#"><?= rp($p['Besar_Angsuran'])." #".$p['Lama_Angsuran']; ?>x</a></td>
+                                        <td><a href="#"><?= rp($p['Besar_Angsuran']) . " #" . $p['Lama_Angsuran']; ?>x</a></td>
                                     </tr>
                                     <tr>
                                         <td><i class="ik ik-info text-info"></i></td>
@@ -146,18 +146,18 @@ function rp($angka)
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">INFORMSASI PINJAMAN</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">INFORMSASI PINJAMAN</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

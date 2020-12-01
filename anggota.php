@@ -42,8 +42,11 @@
                                     <?php
                                     $sql = mysqli_query($konek, "SELECT * FROM anggota ORDER BY ID_Anggota ASC");
                                     while ($d = mysqli_fetch_array($sql)) {
-                                        if($d['Status_Aktif']=='Aktif'){$status = "text-primary";}
-                                        else{$status = "text-danger";}
+                                        if ($d['Status_Aktif'] == 'Aktif') {
+                                            $status = "text-primary";
+                                        } else {
+                                            $status = "text-danger";
+                                        }
                                     ?>
                                         <tr class="<?= $status; ?>">
                                             <td align="center"><?= $i; ?></td>
@@ -56,9 +59,9 @@
                                             <td align="center"><?= $d["Alamat"]; ?></td>
                                             <td align="center">
                                                 <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit"><button class="btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
-                                                <?php if($d['Status_Aktif']=='Aktif'){?>
+                                                <?php if ($d['Status_Aktif'] == 'Aktif') { ?>
                                                     <a href="status_anggota.php?act=non_aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-danger"><i class='fas fa-trash'></i></button></a>
-                                                <?php }else{ ?>
+                                                <?php } else { ?>
                                                     <a href="status_anggota.php?act=aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-success"><i class='fas fa-check'></i></button></a>
                                                 <?php } ?>
                                             </td>
