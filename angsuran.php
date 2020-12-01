@@ -5,12 +5,14 @@
 //membuat format rupiah dengan PHP
 //tutorial www.malasngoding.com
 
-function rupiah($angka){
+function rupiah($angka)
+{
     $hasil_rupiah = "" . number_format($angka, 0, '', '.');
     return $hasil_rupiah;
 }
 
-function rp($angka){
+function rp($angka)
+{
     $hasil_rupiah = "Rp. " . number_format($angka, 0, '', '.');
     return $hasil_rupiah;
 }
@@ -47,28 +49,28 @@ function rp($angka){
                         $total_belum_lunas = $dbl['Total_Belum_Lunas'];
                         ?>
 
-                        <div class="col-md-4 float-left">
-                            <table>
+                        <div class="col-md-0 float-left">
+                            <table style="font-size: 12px;">
 
                                 <tr>
-                                    <td width="120px">Nama Anggota</td>
+                                    <td width="90px">Nama Anggota</td>
                                     <td> : <?= $da['Nama_Anggota']; ?></td>
                                 </tr>
                                 <tr>
-                                    <td height="50px" width="120px">ID Pinjaman</td>
+                                    <td height="50px">ID Pinjaman</td>
                                     <td> : <?= $da['ID_Pinjaman']; ?></td>
                                 </tr>
                                 <tr>
-                                    <td width="120px">ID Anggota</td>
+                                    <td>ID Anggota</td>
                                     <td> : <?= $da['ID_Anggota']; ?></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="col-md-0 float-right mb-4">
-                            <table border="1">
+                            <table border="1" style="font-size: 12px;">
                                 <tr>
-                                    <td align="right" width="150px">Bunga Pinjaman</td>
-                                    <td align="right" width="150px"><?= $da['Bunga']; ?>%</td>
+                                    <td align="right" width="100px">Bunga Pinjaman</td>
+                                    <td align="right" width="120px"><?= $da['Bunga']; ?>%</td>
                                 </tr>
                                 <tr>
                                     <td align="right">Lama Angsuran</td>
@@ -80,7 +82,7 @@ function rp($angka){
                                 </tr>
                                 <tr>
                                     <td align="right">Tanggal Pinjaman</td>
-                                    <td align="right"><?= tgl($da['Tgl_Entri']); ?></td>
+                                    <td align="right"><?= $da['Tgl_Entri']; ?></td>
                                 </tr>
                                 <tr>
                                     <td align="right">Angsuran Perbulan</td>
@@ -88,28 +90,24 @@ function rp($angka){
                                 </tr>
                             </table>
                         </div>
-
-                        <form action="" method="post">
-                            <!-- <?php
-                                    //     if(isset($_POST['cari'])){
-                                    //         $nama = $_POST['nama'];
-                                    //     }
-                                    //
-                                    ?>
-                            <table class="table">
-                                <tr>
-                                    <td>ID Pinjaman <span style="margin-left: 20px">:</span></td>
-                                    <td>
-                                        <input class="form-control" type="text" value="<?php if (isset($nama)) {
-                                                                                            echo $nama;
-                                                                                        } ?>" name="nama" placeholder="Cari Nama...">
-                                    </td>
-                                    <td>
-                                        <button type="submit" name="cari" class="btn btn-success" style="height: auto;"><i class="ik ik-check-circle"></i>Cari</button>
-                                    </td>
-                                </tr>
-                            </table> -->
-                            <table class="table table-bordered">
+                        <br><br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="dt-responsive p-4" style="overflow: scroll;">
+                            <table class="table table-bordered" id="scr-vtr-dynamic">
+                                <col width="50">
+                                <col width="120">
+                                <col width="180">
+                                <col width="170">
+                                <col width="100">
+                                <col width="100">
+                                <col width="120">
+                                <col width="150">
+                                <col width="200">
                                 <thead>
                                     <tr align="center">
                                         <td>ID Angsuran</td>
@@ -118,23 +116,30 @@ function rp($angka){
                                         <td>Jatuh Tempo</td>
                                         <td>Konfirmasi</td>
                                         <td>Denda</td>
-                                        <th>Telat Denda</th>
+                                        <td>Telat Denda</td>
                                         <td>Status</td>
                                         <td>Aksi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $sql = mysqli_query($konek, "SELECT * FROM angsuran INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota
+                                    $sql = mysqli_query($konek, "SELECT * FROM angsuran INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota
                                         WHERE ID_Pinjaman='$_GET[ID_Pinjaman]'");
-                                        while ($a = mysqli_fetch_array($sql)) {
-                                            if ($a['Telat_Denda'] == null) {$telatDenda = '';} 
-                                            else {$telatDenda = $a['Telat_Denda'] . " Hari";}
+                                    while ($a = mysqli_fetch_array($sql)) {
+                                        if ($a['Telat_Denda'] == null) {
+                                            $telatDenda = '';
+                                        } else {
+                                            $telatDenda = $a['Telat_Denda'] . " Hari";
+                                        }
 
-                                            if($a['Jatuh_Tempo']==date('Y-m-d') && $a['Status_Angsuran']=='Belum Lunas'){$keterangan="text-danger";}
-                                            elseif($a['Status_Angsuran']=='Belum Lunas'){$keterangan="text-dark";}
-                                            else{$keterangan="text-primary";}
-                                    ?>  
+                                        if ($a['Jatuh_Tempo'] == date('Y-m-d') && $a['Status_Angsuran'] == 'Belum Lunas') {
+                                            $keterangan = "text-danger";
+                                        } elseif ($a['Status_Angsuran'] == 'Belum Lunas') {
+                                            $keterangan = "text-dark";
+                                        } else {
+                                            $keterangan = "text-primary";
+                                        }
+                                    ?>
                                         <tr class="<?= $keterangan ?>">
                                             <td align="center"><?= $a['ID_Angsuran'] ?></td>
                                             <td align="center"><?= $a['Angsuran'] ?></td>
@@ -145,15 +150,19 @@ function rp($angka){
                                             <td align="center"><?= $telatDenda; ?></td>
                                             <td align="center"><?= $a['Status_Angsuran'] ?></td>
                                             <td align="center">
-                                                <a class="btn btn-success btn-icon" href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>"></a>
-                                                <a class="btn btn-warning btn-icon" href="acc_angsuran.php?act=batal&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>"><i class="fas fa-times"></i></a>
+                                                <a href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>">
+                                                    <button class="btn btn-icon btn-outline-primary"><i class='fas fa-check'></i></button>
+                                                </a>
+                                                <a href="acc_angsuran.php?act=batal&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>">
+                                                    <button class="btn btn-icon btn-outline-danger"><i class='fas fa-times'></i></button>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
 
                             </table>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

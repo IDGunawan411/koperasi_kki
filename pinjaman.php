@@ -84,9 +84,9 @@ function rp($angka)
                                                 <td align="right"><?= rupiah($p["Besar_Angsuran"]); ?></td>
                                                 <td align="center"><?= $p["Status_Pinjaman"] ?></td>
                                                 <td>
-                                                    <button class="btn btn-icon btn-outline-primary" href="acc_pinjaman.php?act=acc&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>"><i class='ik ik-check'></i></button>
-                                                    <a class="btn btn-danger btn-icon" href="acc_pinjaman.php?act=tolak&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>"><i class='fa fa-times'></i></a>
-                                                    <a class="btn btn-danger btn-icon" href="angsuran.php?act=tolak&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>"><i class='fa fa-list'></i></a>
+                                                    <a href="angsuran.php?act=tolak&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Angsuran">
+                                                        <button class="btn btn-icon btn-outline-primary"><i class='fa fa-list'></i></button>
+                                                    </a>
 
                                                 </td>
                                             </tr>

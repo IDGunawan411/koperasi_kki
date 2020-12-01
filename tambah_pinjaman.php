@@ -4,21 +4,21 @@
 
 <div class="main-content">
     <div class="container-fluid">
-    <?php if($_SESSION['Level']=='Petugas'){ ?>
-        <ol class="breadcrumb mb-4" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
-            <li class="breadcrumb-item no-drop active">Pinjaman</li>
-            <li class="breadcrumb-item no-drop active">Tambah Pinjaman</li>
-            <li class="ml-auto active font-weight-bold">Pinjaman</li>
-        </ol>
-    <?php }else{ ?>
-        <ol class="breadcrumb" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="ml-auto active font-weight-bold">Tambah Pinjaman</li>
-        </ol>
-    <?php } ?>
-        
+        <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+            <ol class="breadcrumb mb-4" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
+                <li class="breadcrumb-item no-drop active">Pinjaman</li>
+                <li class="breadcrumb-item no-drop active">Tambah Pinjaman</li>
+                <li class="ml-auto active font-weight-bold">Pinjaman</li>
+            </ol>
+        <?php } else { ?>
+            <ol class="breadcrumb" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="ml-auto active font-weight-bold">Tambah Pinjaman</li>
+            </ol>
+        <?php } ?>
+
         <div class="row">
             <div class="col-md-12">
                 <form method="post" action="" class="was-validated">
@@ -33,43 +33,43 @@
                                     </div>
                                     <br>
                                     <?php
-                                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                            $idPinjaman         = $_POST['ID_Pinjaman'];
-                                            $idAnggota          = $_POST['ID_Anggota'];
-                                            $namaPinjaman       = $_POST['Nama_Pinjaman'];
-                                            $besarPinjaman      = $_POST['Besar_Pinjaman'];
-                                            $besarAngsuran      = $_POST['Besar_Angsuran'];
-                                            $lamaAngsuran       = $_POST['Lama_Angsuran'];
-                                            $bunga              = $_POST['Bunga'];
-                                            $tglEntri           = $_POST['Tgl_Entri'];
-                                            $jatuhTempo         = $_POST['Jatuh_Tempo'];
+                                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                        $idPinjaman         = $_POST['ID_Pinjaman'];
+                                        $idAnggota          = $_POST['ID_Anggota'];
+                                        $namaPinjaman       = $_POST['Nama_Pinjaman'];
+                                        $besarPinjaman      = $_POST['Besar_Pinjaman'];
+                                        $besarAngsuran      = $_POST['Besar_Angsuran'];
+                                        $lamaAngsuran       = $_POST['Lama_Angsuran'];
+                                        $bunga              = $_POST['Bunga'];
+                                        $tglEntri           = $_POST['Tgl_Entri'];
+                                        $jatuhTempo         = $_POST['Jatuh_Tempo'];
 
-                                            if ($idAnggota == '' | $namaPinjaman == '' | $besarPinjaman == '' | $besarAngsuran == '' | $lamaAngsuran == '' | $bunga == '' | $tglEntri == ''  | $jatuhTempo == '') {
-                                                    echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>Data Belum lengkap !!!</div>";
+                                        if ($idAnggota == '' | $namaPinjaman == '' | $besarPinjaman == '' | $besarAngsuran == '' | $lamaAngsuran == '' | $bunga == '' | $tglEntri == ''  | $jatuhTempo == '') {
+                                            echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>Data Belum lengkap !!!</div>";
+                                        } else {
+                                            $sql_np = mysqli_query($konek, "SELECT * FROM jenis_pinjaman WHERE Nama_Pinjaman='$namaPinjaman'");
+                                            $np = mysqli_fetch_array($sql_np);
+                                            if ($besarPinjaman > $np['Max_Pinjaman']) {
+                                                echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>Melebihi Batas Pinjaman !!! </div>";
                                             } else {
-                                                $sql_np = mysqli_query($konek, "SELECT * FROM jenis_pinjaman WHERE Nama_Pinjaman='$namaPinjaman'");
-                                                $np = mysqli_fetch_array($sql_np);
-                                                if ($besarPinjaman > $np['Max_Pinjaman']) {
-                                                    echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>Melebihi Batas Pinjaman !!! </div>";
-                                                } else {
-                                                    //simpan data
-                                                    $simpan = mysqli_query(
-                                                        $konek,
-                                                        "INSERT INTO `pinjaman` (`ID_Pinjaman`, `ID_Anggota`, `Nama_Pinjaman`, `Besar_Pinjaman`, `Besar_Angsuran`, `Lama_Angsuran`,`Bunga`, `Tgl_Entri`, `Jatuh_Tempo`, `Status_Pinjaman`) 
+                                                //simpan data
+                                                $simpan = mysqli_query(
+                                                    $konek,
+                                                    "INSERT INTO `pinjaman` (`ID_Pinjaman`, `ID_Anggota`, `Nama_Pinjaman`, `Besar_Pinjaman`, `Besar_Angsuran`, `Lama_Angsuran`,`Bunga`, `Tgl_Entri`, `Jatuh_Tempo`, `Status_Pinjaman`) 
                                                         VALUES ('$idPinjaman', '$idAnggota', '$namaPinjaman', '$besarPinjaman', '$besarAngsuran', '$lamaAngsuran', '$bunga', '$tglEntri', '$jatuhTempo', 'Menunggu')"
-                                                    );
-                                                    echo "<script>document.location.href = 'pinjaman.php';</script>";
-                                                }
+                                                );
+                                                echo "<script>document.location.href = 'pinjaman.php';</script>";
                                             }
                                         }
-                                        //membuat ID Pinjaman
-                                        $today          = "P21";
-                                        $query          = mysqli_query($konek, "SELECT max(ID_Pinjaman) AS last FROM pinjaman WHERE ID_Pinjaman LIKE '$today%'");
-                                        $data           = mysqli_fetch_array($query);
-                                        $lastNoBayar    = $data['last'];
-                                        $lastNoUrut     = substr($lastNoBayar, 3, 4);
-                                        $nextNoUrut     = $lastNoUrut + 1;
-                                        $nextNoPinjaman = $today . sprintf('%04s', $nextNoUrut);
+                                    }
+                                    //membuat ID Pinjaman
+                                    $today          = "P21";
+                                    $query          = mysqli_query($konek, "SELECT max(ID_Pinjaman) AS last FROM pinjaman WHERE ID_Pinjaman LIKE '$today%'");
+                                    $data           = mysqli_fetch_array($query);
+                                    $lastNoBayar    = $data['last'];
+                                    $lastNoUrut     = substr($lastNoBayar, 3, 4);
+                                    $nextNoUrut     = $lastNoUrut + 1;
+                                    $nextNoPinjaman = $today . sprintf('%04s', $nextNoUrut);
                                     ?>
                                     <div class="btn btn-md btn-danger btn-block" style="height: auto">
                                         <i class="fa fa-lock fa-md"></i>
@@ -92,7 +92,7 @@
                                             <div class="md-form mt-0">
                                                 <div class="form-group row">
                                                     <div class="col-sm-8">
-                                                        <input type="date" class="form-control" id="Tgl_Entri" value="<?= date('Y-m-d'); ?>" name="Tgl_Entri" required>
+                                                        <input type="text" class="form-control" id="Tgl_Entri" value="<?= $date->format('d-m-Y, H:i:s A'); ?>" name="Tgl_Entri" required readonly>
                                                         <div class="valid-feedback">Valid.</div>
                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                     </div>

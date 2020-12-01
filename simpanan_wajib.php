@@ -84,7 +84,7 @@ function rp($angka)
                                                 <td align="center"><?= $w["ID_Simpanan"]; ?></td>
                                                 <td align="center"><?= $w["ID_Tabungan"]; ?></td>
                                                 <td><?= $w["Nama_Anggota"]; ?></td>
-                                                <td align="right"><?= tgl($w["Tanggal_Transaksi"]); ?></td>
+                                                <td align="right"><?= $w["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
                                                     <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $w['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $w['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $w['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $w['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $w['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $w['Saldo_Simpanan']; ?>" data-gambar="<?= $w['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">

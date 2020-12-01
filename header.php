@@ -26,6 +26,11 @@ function hari($date)
     return $hari_arr[$hari];
 }
 
+
+$timezone = new DateTimeZone('Asia/Jakarta');
+$date = new DateTime();
+$date->setTimeZone($timezone);
+
 ?>
 
 <script>
@@ -184,36 +189,81 @@ function hari($date)
                         <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                             <div class="dropdown">
                                 <?php
-                                $ps = mysqli_query($konek, "SELECT COUNT(ID_Simpanan) as total_ps FROM simpanan WHERE Status_Simpanan='Menunggu'");
-                                $dps = mysqli_fetch_array($ps);
-                                $total_ps = $dps['total_ps'];
+                                $pSimpanan = mysqli_query($konek, "SELECT COUNT(ID_Simpanan) as total_simpanan FROM simpanan WHERE Status_Simpanan ='Menunggu'");
+                                $dSimpanan = mysqli_fetch_array($pSimpanan);
+                                $total_simpanan = $dSimpanan['total_simpanan'];
+
+                                $pPenarikan = mysqli_query($konek, "SELECT COUNT(ID_Penarikan) as total_penarikan FROM penarikan WHERE Status_Penarikan ='Menunggu'");
+                                $dPenarikan = mysqli_fetch_array($pPenarikan);
+                                $total_penarikan = $dPenarikan['total_penarikan'] + $total_simpanan;
+
+                                $pPinjaman = mysqli_query($konek, "SELECT COUNT(ID_Pinjaman) as total_pinjaman FROM pinjaman WHERE Status_Pinjaman ='Menunggu'");
+                                $dPinjaman = mysqli_fetch_array($pPinjaman);
+                                $total_pinjaman = $dPinjaman['total_pinjaman'] + $total_penarikan;
                                 ?>
-                                <p></p>
                                 <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ik ik-bell"></i><span class="badge bg-danger"><?= $total_ps; ?></span></button>
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
+                                    <i class="ik ik-bell"></i><span class="badge bg-danger"><?= $total_pinjaman; ?></span></button>
+                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" style=" height: 500px; width: 350px; overflow: auto;" aria-labelledby="notiDropdown">
                                     <h4 class="header">Notifications</h4>
                                     <div class="notifications-wrap">
+                                        <!-- Notifikasi Simpanan -->
                                         <?php
-                                        $qs = mysqli_query($konek, "SELECT * FROM simpanan WHERE Status_Simpanan='Menunggu'");
-                                        while ($ds = mysqli_fetch_array($qs)) {
-                                            if ($ds['Jenis_Simpanan'] == 'Simpanan Wajib') {
+                                        $qSimpanan = mysqli_query($konek, "SELECT * FROM simpanan INNER JOIN anggota USING(ID_Tabungan) WHERE Status_Simpanan ='Menunggu'");
+                                        while ($dSimpanan = mysqli_fetch_array($qSimpanan)) {
+                                            if ($dSimpanan['Jenis_Simpanan'] == 'Simpanan Wajib') {
                                                 $simpanan = "warning";
                                             } else {
-                                                $simpanan = "primary";
+                                                $simpanan = "warning";
                                             }
+
                                         ?>
+
                                             <a href="pengajuan_simpanan_acc.php" class="media">
                                                 <span class="media-body">
+                                                    <small><i class="ml-4 text-red"><?= $dSimpanan['Tanggal_Transaksi'] ?></i></small><br />
                                                     <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
-                                                    <span class="media-content h6 text-dark font-weight-bold"><?= $ds['ID_Tabungan']; ?> - </span>
-                                                    <span class="media-content h6 text-<?= $simpanan; ?>"><?= $ds['Jenis_Simpanan']; ?></span>
+                                                    <span class="media-content h6 text-dark text-red"><?= $dSimpanan['Nama_Anggota']; ?> - </span>
+                                                    <span class="media-content h6 text-<?= $simpanan; ?>"><?= $dSimpanan['Jenis_Simpanan']; ?></span>
                                                 </span>
                                             </a>
                                         <?php } ?>
+                                        <!-- END Notifikasi Simpanan -->
+                                        <!-- Notifikasi Penarikan -->
+                                        <?php
+                                        $qPenarikan = mysqli_query($konek, "SELECT * FROM penarikan WHERE Status_Penarikan = 'Menunggu' ");
+                                        while ($dPenarikan = mysqli_fetch_array($qPenarikan)) {
+                                        ?>
+                                            <a href="pengajuan_penarikan.php" class="media"">
+                                                <span class=" media-body">
+                                                <small><i class="ml-4"><?php echo date('d F Y, h:i:s A',) ?></i></small><br />
+                                                <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
+                                                <span class="media-content h6 text-dark font-weight-bold"><?= $dPenarikan['ID_Tabungan']; ?> - </span>
+                                                <span class="media-content h6 text-red">Penarikan</span>
+                                                </span>
+                                            </a>
+                                        <?php } ?>
+                                        <!-- END Notifikasi Penarikan -->
+                                        <!-- Notifikasi Pinjaman -->
+                                        <?php
+                                        $qPinjaman = mysqli_query($konek, "SELECT * FROM pinjaman WHERE Status_pinjaman ='Menunggu'");
+                                        while ($dPinjaman = mysqli_fetch_array($qPinjaman)) {
+                                        ?>
+                                            <a href="pengajuan_pinjaman.php" class="media">
+                                                <span class="media-body">
+                                                    <small><i class="ml-4"><?php echo date('j F Y, g:i a',) ?></i></small><br />
+                                                    <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
+                                                    <span class="media-content h6 text-dark font-weight-bold"><?= $dPinjaman['ID_Anggota']; ?> - </span>
+                                                    <span class="media-content h6 text-red">Pinjaman</span>
+                                                </span>
+                                            </a>
+
+                                        <?php } ?>
+                                        <!-- END Notifikasi Pinjaman -->
+
                                     </div>
-                                    <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
+
                                 </div>
+
                             </div>
                         <?php } else { ?>
                             <div class="dropdown">
@@ -246,7 +296,7 @@ function hari($date)
                                 </div>
                             </div>
                         <?php } ?>
-                        <!-- <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button> -->
+                        <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

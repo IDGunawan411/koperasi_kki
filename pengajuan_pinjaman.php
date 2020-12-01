@@ -96,10 +96,18 @@ function rp($angka)
                                             <td align="right"><?= $p["Bunga"]; ?>%</td>
                                             <td align="right"><?= rupiah($p["Besar_Angsuran"]); ?></td>
                                             <td align="center"><?= $p["Status_Pinjaman"] ?></td>
-                                            <td>
-                                                <a class="btn btn-primary btn-icon" href="acc_pinjaman.php?act=acc&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>"><i class='fa fa-check'></i></a>
-                                                <a class="btn btn-danger btn-icon" href="acc_pinjaman.php?act=tolak&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>"><i class='fa fa-times'></i></a>
-                                            </td>
+                                            <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+                                                <td align="center">
+                                                    <?php if ($p['Status_Pinjaman'] == 'Menunggu') { ?>
+                                                        <a href="acc_pinjaman.php?act=acc&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi"><button class="btn btn-icon btn-outline-primary"><i class='fa fa-check'></i></button></a>
+                                                        </a>
+                                                    <?php } else { ?>
+                                                        <a href="acc_pinjaman.php?act=batal&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Batal">
+                                                            <button class="btn btn-icon btn-outline-danger"><i class='fa fa-times'></i></button>
+                                                        </a>
+                                                    <?php } ?>
+                                                </td>
+                                            <?php } ?>
                                         </tr>
                                         <?php $i++ ?>
                                     <?php } ?>

@@ -24,21 +24,21 @@
 
 <div class="main-content">
     <div class="container-fluid">
-        
-    <?php if($_SESSION['Level']=='Petugas'){ ?>
-        <ol class="breadcrumb mb-4" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
-            <li class="breadcrumb-item no-drop active">Simpanan</li>
-            <li class="breadcrumb-item no-drop active">Tambah Simpanan</li>
-            <li class="ml-auto active font-weight-bold">Simpanan</li>
-        </ol>
-    <?php }else{ ?>
-        <ol class="breadcrumb" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="ml-auto active font-weight-bold">Tambah Simpanan</li>
-        </ol>
-    <?php } ?>
+
+        <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+            <ol class="breadcrumb mb-4" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
+                <li class="breadcrumb-item no-drop active">Simpanan</li>
+                <li class="breadcrumb-item no-drop active">Tambah Simpanan</li>
+                <li class="ml-auto active font-weight-bold">Simpanan</li>
+            </ol>
+        <?php } else { ?>
+            <ol class="breadcrumb" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="ml-auto active font-weight-bold">Tambah Simpanan</li>
+            </ol>
+        <?php } ?>
 
         <div class="row">
             <div class="col-md-12">
@@ -54,127 +54,126 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <?php
-                                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                                            function upload()
-                                            {
+                                        function upload()
+                                        {
 
-                                                $namaFile = $_FILES['gambar']['name'];
-                                                $ukuranFile = $_FILES['gambar']['size'];
-                                                $error = $_FILES['gambar']['error'];
-                                                $tmpName = $_FILES['gambar']['tmp_name'];
+                                            $namaFile = $_FILES['gambar']['name'];
+                                            $ukuranFile = $_FILES['gambar']['size'];
+                                            $error = $_FILES['gambar']['error'];
+                                            $tmpName = $_FILES['gambar']['tmp_name'];
 
-                                                // cek apakah tidak ada gambar yang diupload
-                                                if ($error === 4) {
-                                                    echo "<script>
+                                            // cek apakah tidak ada gambar yang diupload
+                                            if ($error === 4) {
+                                                echo "<script>
                                                             alert('Pilih gambar terlebih dahulu!');
                                                         </script>";
-                                                    return false;
-                                                };
+                                                return false;
+                                            };
 
-                                                // cek apakah yang diupload adalah gambar
-                                                $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-                                                $ekstensiGambar = explode('.', $namaFile);
-                                                $ekstensiGambar = strtolower(end($ekstensiGambar));
-                                                if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-                                                    echo "<script>
+                                            // cek apakah yang diupload adalah gambar
+                                            $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+                                            $ekstensiGambar = explode('.', $namaFile);
+                                            $ekstensiGambar = strtolower(end($ekstensiGambar));
+                                            if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+                                                echo "<script>
                                                             alert('yang anda upload bukan gambar!');
                                                         </script>";
-                                                    return false;
-                                                }
-
-                                                // cek ika ukurannya terlalu besar 
-                                                if ($ukuranFile > 10000000) {
-                                                    echo "<script>
-                                                            alert('ukuran gambar terlalu besar!');
-                                                        </script>";
-                                                    return false;
-                                                }
-
-
-                                                // jika lolos pengecekan, gambar siap diupload
-                                                // generate nama gambar baru
-                                                $namaFileBaru = uniqid();
-                                                $namaFileBaru .= '.';
-                                                $namaFileBaru .= $ekstensiGambar;
-
-
-                                                move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
-
-
-                                                return $namaFileBaru;
+                                                return false;
                                             }
 
-
-                                            $idSimpanan         = $_POST['ID_Simpanan'];
-                                            $idTabungan         = $_POST['ID_Tabungan'];
-                                            $jenisSimpanan      = $_POST['Jenis_Simpanan'];
-                                            $tanggalTransaksi   = $_POST['Tanggal_Transaksi'];
-                                            $saldoSimpanan      = $_POST['Saldo_Simpanan'];
-                                            $gambar             = upload();
-                                            if (!$gambar) {
+                                            // cek ika ukurannya terlalu besar 
+                                            if ($ukuranFile > 10000000) {
+                                                echo "<script>
+                                                            alert('ukuran gambar terlalu besar!');
+                                                        </script>";
                                                 return false;
                                             }
 
 
-                                            if ($idTabungan == '0' | $jenisSimpanan == '0' | $tanggalTransaksi == '' | $saldoSimpanan == '' | $gambar == '') {
-                                                echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
+                                            // jika lolos pengecekan, gambar siap diupload
+                                            // generate nama gambar baru
+                                            $namaFileBaru = uniqid();
+                                            $namaFileBaru .= '.';
+                                            $namaFileBaru .= $ekstensiGambar;
+
+
+                                            move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+
+                                            return $namaFileBaru;
+                                        }
+
+
+                                        $idSimpanan         = $_POST['ID_Simpanan'];
+                                        $idTabungan         = $_POST['ID_Tabungan'];
+                                        $jenisSimpanan      = $_POST['Jenis_Simpanan'];
+                                        $tanggalTransaksi   = $_POST['Tanggal_Transaksi'];
+                                        $saldoSimpanan      = $_POST['Saldo_Simpanan'];
+                                        $gambar             = upload();
+                                        if (!$gambar) {
+                                            return false;
+                                        }
+
+
+                                        if ($idTabungan == '0' | $jenisSimpanan == '0' | $tanggalTransaksi == '' | $saldoSimpanan == '' | $gambar == '') {
+                                            echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
                                                     Data Belum lengkap !!!
                                                 </div>";
-                                            } else {
-                                                //simpan data simpanan
-                                                $simpan = mysqli_query(
-                                                    $konek,
-                                                    "INSERT INTO `simpanan` (`ID_Simpanan`,`ID_Tabungan`, `Jenis_Simpanan`, `Tanggal_Transaksi`, `Saldo_Simpanan`, `Status_Simpanan`, `gambar`)
+                                        } else {
+                                            //simpan data simpanan
+                                            $simpan = mysqli_query(
+                                                $konek,
+                                                "INSERT INTO `simpanan` (`ID_Simpanan`,`ID_Tabungan`, `Jenis_Simpanan`, `Tanggal_Transaksi`, `Saldo_Simpanan`, `Status_Simpanan`, `gambar`)
                                                         VALUES ('$idSimpanan','$idTabungan', '$jenisSimpanan', '$tanggalTransaksi', '$saldoSimpanan', 'Menunggu', '$gambar')"
-                                                );
+                                            );
 
 
-                                                // history saldo
-                                                $sql_hs         = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan='$idTabungan'");
-                                                $hs             = mysqli_fetch_array($sql_hs);
-                                                $id_hs          = $hs['Besar_Tabungan'];
-                                                $Saldo_Terakhir = $id_hs + $saldoSimpanan;
-                                                //simpan data history
-                                                mysqli_query(
-                                                    $konek,
-                                                    "INSERT INTO `history` (`ID_History`, `ID_Tabungan`, `Jenis_History`, `Jumlah_History`, `Saldo_Terakhir`, `Waktu_History`)
+                                            // history saldo
+                                            $sql_hs         = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan='$idTabungan'");
+                                            $hs             = mysqli_fetch_array($sql_hs);
+                                            $id_hs          = $hs['Besar_Tabungan'];
+                                            $Saldo_Terakhir = $id_hs + $saldoSimpanan;
+                                            //simpan data history
+                                            mysqli_query(
+                                                $konek,
+                                                "INSERT INTO `history` (`ID_History`, `ID_Tabungan`, `Jenis_History`, `Jumlah_History`, `Saldo_Terakhir`, `Waktu_History`)
                                                     VALUES (NULL, '$idTabungan', '$jenisSimpanan', '$saldoSimpanan', '$Saldo_Terakhir', '$tanggalTransaksi');"
-                                                );
+                                            );
 
 
-                                                // update data tabungan
-                                                // $sql_tb         = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan='$idTabungan'");
-                                                // $tb             = mysqli_fetch_array($sql_tb);
-                                                // $id_tb          = $tb['ID_Tabungan'];
-                                                // $tambah_saldo   = $tb['Besar_Tabungan'] + $saldoSimpanan;
+                                            // update data tabungan
+                                            // $sql_tb         = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan='$idTabungan'");
+                                            // $tb             = mysqli_fetch_array($sql_tb);
+                                            // $id_tb          = $tb['ID_Tabungan'];
+                                            // $tambah_saldo   = $tb['Besar_Tabungan'] + $saldoSimpanan;
 
-                                                // $update = mysqli_query($konek, "UPDATE tabungan SET
-                                                //                         Besar_Tabungan='$tambah_saldo'
-                                                //                         WHERE ID_Tabungan='$id_tb'");
+                                            // $update = mysqli_query($konek, "UPDATE tabungan SET
+                                            //                         Besar_Tabungan='$tambah_saldo'
+                                            //                         WHERE ID_Tabungan='$id_tb'");
 
-                                                if ($simpan) {
-                                                    if($_SESSION['Level']=='Petugas'){
-                                                        echo "<script>document.location.href = 'pengajuan_simpanan.php';</script>";
-                                                    }else{
-                                                        if($jenisSimpanan=='Simpanan Wajib'){
-                                                            echo "<script>document.location.href = 'simpanan_wajib.php';</script>";
-                                                        }else{
-                                                            echo "<script>document.location.href = 'simpanan_sukarela.php';</script>";
-                                                        }
+                                            if ($simpan) {
+                                                if ($_SESSION['Level'] == 'Petugas') {
+                                                    echo "<script>document.location.href = 'pengajuan_simpanan.php';</script>";
+                                                } else {
+                                                    if ($jenisSimpanan == 'Simpanan Wajib') {
+                                                        echo "<script>document.location.href = 'simpanan_wajib.php';</script>";
+                                                    } else {
+                                                        echo "<script>document.location.href = 'simpanan_sukarela.php';</script>";
                                                     }
                                                 }
-
                                             }
                                         }
-                                        //membuat ID Simpanan
-                                        $text1          = "KSS29";
-                                        $query1         = mysqli_query($konek, "SELECT max(ID_Simpanan) AS last1 FROM simpanan WHERE ID_Simpanan LIKE '$text1%'");
-                                        $data1          = mysqli_fetch_array($query1);
-                                        $lastNoAnggota  = $data1['last1'];
-                                        $lastNoUrut1    = substr($lastNoAnggota, 5, 4);
-                                        $nextNoUrut1    = $lastNoUrut1 + 1;
-                                        $nextNoSimpanan = $text1 . sprintf('%04s', $nextNoUrut1);
+                                    }
+                                    //membuat ID Simpanan
+                                    $text1          = "KSS29";
+                                    $query1         = mysqli_query($konek, "SELECT max(ID_Simpanan) AS last1 FROM simpanan WHERE ID_Simpanan LIKE '$text1%'");
+                                    $data1          = mysqli_fetch_array($query1);
+                                    $lastNoAnggota  = $data1['last1'];
+                                    $lastNoUrut1    = substr($lastNoAnggota, 5, 4);
+                                    $nextNoUrut1    = $lastNoUrut1 + 1;
+                                    $nextNoSimpanan = $text1 . sprintf('%04s', $nextNoUrut1);
 
                                     ?>
                                     <div class="form-group row">
@@ -186,7 +185,7 @@
                                         </div>
                                     </div>
 
-                                    <?php if($_SESSION['Level']=='Petugas'){ ?>
+                                    <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                         <div class="form-group row">
                                             <label for="ID_Tabungan" class="col-sm-3 col-form-label text-right">Anggota :</label>
                                             <div class="col-sm-7">
@@ -203,10 +202,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php }else{ 
+                                    <?php } else {
                                         $sql_t = mysqli_query($konek, "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Tabungan = tabungan.ID_Tabungan
                                         WHERE anggota.ID_User = '$_SESSION[ID_User]'");
-                                        $dt=mysqli_fetch_array($sql_t); ?> 
+                                        $dt = mysqli_fetch_array($sql_t); ?>
 
                                         <input type="hidden" value="<?= $dt['ID_Tabungan'] ?>" name="ID_Tabungan">
                                     <?php } ?>
@@ -234,7 +233,7 @@
                                             <div class="md-form mt-0">
                                                 <div class="form-group row">
                                                     <div class="col-sm-7">
-                                                        <input type="date" value="<?= date('Y-m-d'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required>
+                                                        <input type="text" value="<?= $date->format('d-m-Y, H:i:s A'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required readonly>
                                                         <div class="valid-feedback">Valid.</div>
                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                     </div>

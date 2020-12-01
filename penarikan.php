@@ -54,8 +54,8 @@ function rp($angka)
                     <div class="card">
                         <div class="card-body">
                             <a href="tambah_penarikan.php" class="btn btn-primary btn-sm" style="margin-bottom: 10px; height: auto" data-toggle="tooltip" data-placement="top" title="Tambah Data Penarikan"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
-                            <div class="dt-responsive p-4">
-                                <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
+                            <div class="dt-responsive p-4" style="overflow: scroll;">
+                                <table class=" table table-bordered display nowrap" id="alt-pg-dt" style="font-size: 16px;">
                                     <col width="130px">
                                     <col width="130px">
                                     <col width="350px">
