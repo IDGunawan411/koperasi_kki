@@ -242,7 +242,7 @@
                                                     <div class="md-form mt-0">
                                                         <div class="form-group row">
                                                             <div class="col-sm-7">
-                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required readonly>
+                                                                <input type="text" value="<?= date('Y-m-d'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required readonly>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>

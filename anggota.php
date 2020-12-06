@@ -22,9 +22,9 @@
                                         <th>Tanggal Masuk</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis Kelamin</th>
-                                        <th>Tempat, Tanggal Lahir</th>
+                                        <!-- <th>Tempat, Tanggal Lahir</th> -->
                                         <th>No Telp</th>
-                                        <th>Tanggal Entri</th>
+                                        <!-- <th>Tanggal Entri</th> -->
                                         <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -42,14 +42,16 @@
                                     ?>
                                         <tr class="<?= $status; ?>">
                                             <td align="center"><?= $i; ?></td>
-                                            <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
+                                            <td align="center"><?= tgl($d["Tanggal_Entri"]); ?></td>
                                             <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: blue;" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
                                             <td align="center"><?= $d["Jenis_Kelamin"]; ?></td>
-                                            <td align="left"><?= $d["Tempat_Lahir"]; ?>, <?= $d["Tanggal_Lahir"]; ?></td>
+                                            <!-- <td align="left"><?= $d["Tempat_Lahir"]; ?>, <?= $d["Tanggal_Lahir"]; ?></td> -->
                                             <td align="center"><?= $d["No_Telp"]; ?></td>
-                                            <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
+                                            <!-- <td align="center"><?= tgl($d["Tanggal_Entri"]); ?></td> -->
                                             <td align="center"><?= $d["Alamat"]; ?></td>
                                             <td align="center">
+                                                <a href="#ModalInfoAnggota" title="Info" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class=" btn btn-icon btn-outline-info"><i class='fas fa-info'></i></button></a> |
                                                 <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <button class=" btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
                                                 <?php if ($d['Status_Aktif'] == 'Aktif') { ?>

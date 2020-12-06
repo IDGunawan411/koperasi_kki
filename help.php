@@ -48,25 +48,25 @@ function rp($angka)
                             <ul class="list-unstyled card-option">
                                 <li><i class="ik ik-chevron-left action-toggle" data-toggle="tooltip" data-placement="top" title="Geser"></i></li>
                                 <li><i class="ik ik-minus minimize-card" data-toggle="tooltip" data-placement="top" title="Minimize"></i></li>
-                                <li><i class="ik ik-x close-card" data-toggle="tooltip" data-placement="top" title="Close"></i></li>
+                                <li><a href="help_info.php?Konfigurasi=Simpanan"><i class="ik ik-info" data-toggle="tooltip" data-placement="top" title="Information"></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <?php
                     $sql_s = mysqli_query($konek, "SELECT * FROM konfigurasi WHERE Jenis_Konfigurasi='Simpanan'");
                     while ($k_s  = mysqli_fetch_array($sql_s)) { ?>
-                        <div class="card-body todo-task">
-                            <div class="dd" data-plugin="nestable">
-                                <ol class="dd-list">
-                                    <li class="dd-item" data-id="1">
-                                        <div class="dd-handle">
-                                            <h4 class="text-red"><?= $k_s['Nama_Konfigurasi']; ?></h4>
-                                            <h6><?= $k_s['Isi_Konfigurasi']; ?></h6>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </div>
+                    <div class="card-body todo-task">
+                        <div class="dd" data-plugin="nestable">
+                            <ol class="dd-list">
+                                <li class="dd-item" data-id="1">
+                                    <div class="dd-handle">
+                                        <h4 class="text-red"><?= $k_s['Nama_Konfigurasi']; ?></h4>
+                                        <h6 class=""><?= $k_s['Isi_Konfigurasi']; ?></h6>
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
+                    </div>
                     <?php } ?>
                 </div>
             </div>
@@ -81,7 +81,7 @@ function rp($angka)
                             <ul class="list-unstyled card-option">
                                 <li><i class="ik ik-chevron-left action-toggle" data-toggle="tooltip" data-placement="top" title="Geser"></i></li>
                                 <li><i class="ik ik-minus minimize-card" data-toggle="tooltip" data-placement="top" title="Minimize"></i></li>
-                                <li><i class="ik ik-x close-card" data-toggle="tooltip" data-placement="top" title="Close"></i></li>
+                                <li><a href="help_info.php?Konfigurasi=Pinjaman"><i class="ik ik-info" data-toggle="tooltip" data-placement="top" title="Information"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -145,12 +145,11 @@ function rp($angka)
             <div class="col-md-12">
                 <div class="card task-board">
                     <div class="card-header">
-                        <h3><strong>Jasa yang berlaku</strong></h3>
+                        <h3><strong>Konfigurasi Simpanan</strong></h3>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="ik ik-chevron-left action-toggle" data-toggle="tooltip" data-placement="top" title="Geser"></i></li>
                                 <li><i class="ik ik-minus minimize-card" data-toggle="tooltip" data-placement="top" title="Minimize"></i></li>
-                                <li><i class="ik ik-x close-card" data-toggle="tooltip" data-placement="top" title="Close"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -171,6 +170,7 @@ function rp($angka)
                                                 <th>Nama Simpanan</th>
                                                 <th>Besar Simpanan</th>
                                                 <th>Tanggal Entri</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -181,8 +181,14 @@ function rp($angka)
                                                 <tr>
                                                     <td align="center"><?= $s["ID_Jenis_Simpanan"]; ?></td>
                                                     <td align="center"><?= $s["Nama_Simpanan"]; ?></td>
-                                                    <td width="200px" align="right"><?= rupiah($s["Besar_Simpanan"]); ?></td>
+                                                    <td align="right"><?= rupiah($s["Besar_Simpanan"]); ?></td>
                                                     <td align="center"><?= $s["Tgl_Entri"]; ?></td>
+                                                    <td width="100px">
+                                                        <a href="edit_jenis_Simpanan.php?ID_Jenis_Simpanan=<?= $s['ID_Jenis_Simpanan']; ?>"><i class="h5 ik ik-edit text-primary"></i></a>
+                                                        <?php if($s['Nama_Simpanan']!=='Simpanan Pokok' && $s['Nama_Simpanan']!=='Simpanan Wajib'){ ?>
+                                                            <a href="hapus_jenis_Simpanan.php?ID_Jenis_Simpanan=<?= $s['ID_Jenis_Simpanan']; ?>"><i class="h5 fas fa-times text-danger"></i></a>
+                                                        <?php } ?>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             }
@@ -199,12 +205,11 @@ function rp($angka)
             <div class="col-md-12">
                 <div class="card task-board">
                     <div class="card-header">
-                        <h3><strong>Jasa yang berlaku</strong></h3>
+                        <h3><strong>Konfigurasi Jenis Pinjaman</strong></h3>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="ik ik-chevron-left action-toggle" data-toggle="tooltip" data-placement="top" title="Geser"></i></li>
                                 <li><i class="ik ik-minus minimize-card" data-toggle="tooltip" data-placement="top" title="Minimize"></i></li>
-                                <li><i class="ik ik-x close-card" data-toggle="tooltip" data-placement="top" title="Close"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -225,6 +230,7 @@ function rp($angka)
                                                 <th>Nama Pinjaman</th>
                                                 <th>Max Pinjaman</th>
                                                 <th>Bunga</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -237,6 +243,10 @@ function rp($angka)
                                                     <td align="center"><?= $p["Nama_Pinjaman"]; ?></td>
                                                     <td width="200px" align="right"><?= rupiah($p["Max_Pinjaman"]); ?></td>
                                                     <td align="center"><?= $p["Bunga"]; ?>%</td>
+                                                    <td width="100px">
+                                                        <a href="edit_jenis_Simpanan.php?ID_Jenis_Simpanan=<?= $s['ID_Jenis_Simpanan']; ?>"><i class="h5 ik ik-edit text-primary"></i></a>
+                                                        <a href="hapus_jenis_Simpanan.php?ID_Jenis_Simpanan=<?= $s['ID_Jenis_Simpanan']; ?>"><i class="h5 fas fa-times text-danger"></i></a>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             }

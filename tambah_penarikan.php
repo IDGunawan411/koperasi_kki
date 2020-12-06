@@ -150,7 +150,7 @@ function rp($angka)
                                                         <label for="Tgl_Entri" class="col-sm-3 col-form-label text-right">Tanggal Penarikan :</label>
                                                         <div class="col-sm-7">
                                                             <div class="md-form mt-0">
-                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control text-right" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
+                                                                <input type="text" value="<?= date('Y-m-d'); ?>" class="form-control text-right" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
