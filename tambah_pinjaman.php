@@ -97,7 +97,7 @@
                                                             <div class="md-form mt-0">
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-8">
-                                                                        <input type="text" class="form-control" id="Tgl_Entri" value="<?= $date->format('d-m-Y, H:i:s A'); ?>" name="Tgl_Entri" required readonly>
+                                                                        <input type="text" class="form-control" id="Tgl_Entri" value="<?= $date->format('d F Y, H:i:s A'); ?>" name="Tgl_Entri" required readonly>
                                                                         <div class="valid-feedback">Valid.</div>
                                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                                     </div>

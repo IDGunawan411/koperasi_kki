@@ -59,24 +59,24 @@ function rp($angka)
                                     <?php $i = 1; ?>
                                     <?php
                                     if (isset($nama)) {
-                                        $query           = "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Anggota = tabungan.ID_Anggota WHERE Nama_Anggota LIKE'%$nama%'";
+                                        $query           = "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Anggota = tabungan.ID_Anggota WHERE ID_Anggota ";
 
-                                        $sql_pokok       = mysqli_query($konek, "SELECT SUM(Simpanan_Pokok) as pokok FROM anggota WHERE Nama_Anggota LIKE'%$nama%'");
+                                        $sql_pokok       = mysqli_query($konek, "SELECT SUM(Simpanan_Pokok) as pokok FROM anggota WHERE ID_Anggota ");
                                         $total_pk        = mysqli_fetch_array($sql_pokok);
                                         $total_pokok     = $total_pk['pokok'];
 
                                         $sql_total       = mysqli_query($konek, "SELECT SUM(Besar_Tabungan) as tabungan from tabungan 
-                                                            INNER JOIN anggota on anggota.ID_Anggota = tabungan.ID_Anggota WHERE Nama_Anggota LIKE'%$nama%'");
+                                                            INNER JOIN anggota on anggota.ID_Anggota = tabungan.ID_Anggota WHERE ID_Anggota ");
                                         $total_tb        = mysqli_fetch_array($sql_total);
                                         $total_tabungan  = $total_tb['tabungan'];
 
                                         $sql_penarikan   = mysqli_query($konek, "SELECT SUM(Besar_Penarikan) as penarikan from penarikan 
-                                                            INNER JOIN anggota on anggota.ID_Tabungan = penarikan.ID_Tabungan WHERE Nama_Anggota LIKE'%$nama%'");
+                                                            INNER JOIN anggota on anggota.ID_Tabungan = penarikan.ID_Tabungan WHERE ID_Anggota ");
                                         $penarikan       = mysqli_fetch_array($sql_penarikan);
                                         $total_penarikan = $penarikan['penarikan'];
 
                                         $sql_simpanan    = mysqli_query($konek, "SELECT SUM(Saldo_Simpanan) as simpan from simpanan 
-                                                            INNER JOIN anggota on anggota.ID_Anggota = simpanan.ID_Anggota WHERE Nama_Anggota LIKE'%$nama%'");
+                                                            INNER JOIN anggota on anggota.ID_Anggota = simpanan.ID_Anggota WHERE ID_Anggota ");
                                         $simpanan        = mysqli_fetch_array($sql_simpanan);
                                         $total_simpanan  = $simpanan['simpan'];
                                     } else {

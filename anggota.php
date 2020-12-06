@@ -35,7 +35,7 @@
                                     $sql = mysqli_query($konek, "SELECT * FROM anggota ORDER BY ID_Anggota ASC");
                                     while ($d = mysqli_fetch_array($sql)) {
                                         if ($d['Status_Aktif'] == 'Aktif') {
-                                            $status = "text-primary";
+                                            $status = "text-black";
                                         } else {
                                             $status = "text-danger";
                                         }
@@ -43,7 +43,11 @@
                                         <tr class="<?= $status; ?>">
                                             <td align="center"><?= $i; ?></td>
                                             <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
-                                            <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: blue;" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <?php if ($d['Status_Aktif'] == 'Aktif') { ?>
+                                                <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: black; font-weight:bold" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <?php } else { ?>
+                                                <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: red; font-weight:bold" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <?php } ?>
                                             <td align="center"><?= $d["Jenis_Kelamin"]; ?></td>
                                             <td align="left"><?= $d["Tempat_Lahir"]; ?>, <?= $d["Tanggal_Lahir"]; ?></td>
                                             <td align="center"><?= $d["No_Telp"]; ?></td>
