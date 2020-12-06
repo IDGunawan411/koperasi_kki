@@ -87,13 +87,12 @@ function rp($angka)
                                                 <td align="center"><?= $w["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
-                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-gambar="<?= $w['gambar']; ?>" 
-                                                    class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
-                                                    <img src="img/<?= $w['gambar']; ?>" width="80">
+                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-gambar="<?= $w['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
+                                                        <img src="img/<?= $w['gambar']; ?>" width="80">
                                                 </td>
                                                 <td align="center"><?= $w["Status_Simpanan"]; ?></td>
                                             </tr>
-                                        <?php } ?-*5>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
