@@ -120,7 +120,7 @@ function rp($angka)
                     $sql = mysqli_query($konek, "$query");
                     while ($w = mysqli_fetch_array($sql)) {
                         $color = ($w['Status_Simpanan'] == 'Konfirmasi' ? 'text-success' : 'text-danger');
-                    ?>
+                    ?>  
                         <div class="widget border shadow-sm" style="margin-bottom:2px">
                             <div class="widget-header bg-teal text-white">
                                 <h3 class="widget-title h5 font-weight-bold">- <?= $w['ID_Simpanan'] ?> -</h3>

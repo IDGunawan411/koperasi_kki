@@ -17,7 +17,13 @@ function rp($angka)
     return $hasil_rupiah;
 }
 ?>
-
+<style>
+    @media (min-width: 992px) {
+        .nav {
+            font-size: 20px;
+        }
+    }
+</style>
 <div class="main-content">
     <div class="container-fluid">
         <!-- <div class="page-header" style="margin-bottom: 20px; color: #fff; background-color: #e74a3b!important; border-color: #e74a3b!important; padding: 10px 15px; border: 2px solid red; border-radius: 10px;">
@@ -49,11 +55,11 @@ function rp($angka)
                         $total_belum_lunas = $dbl['Total_Belum_Lunas'];
                         ?>
 
-                        <div class="col-md-0 float-left">
-                            <table style="font-size: 12px;">
+                        <div class="nav col-md-0 float-left">
+                            <table>
 
                                 <tr>
-                                    <td width="90px">Nama Anggota</td>
+                                    <td width="150px">Nama Anggota</td>
                                     <td> : <?= $da['Nama_Anggota']; ?></td>
                                 </tr>
                                 <tr>
@@ -66,11 +72,11 @@ function rp($angka)
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-0 float-right mb-4">
-                            <table border="1" style="font-size: 12px;">
+                        <div class="nav col-md-0 float-right mb-4">
+                            <table border="1">
                                 <tr>
-                                    <td align="right" width="100px">Bunga Pinjaman</td>
-                                    <td align="right" width="120px"><?= $da['Bunga']; ?>%</td>
+                                    <td align="right" width="200px">Bunga Pinjaman</td>
+                                    <td align="right" width="250px"><?= $da['Bunga']; ?>%</td>
                                 </tr>
                                 <tr>
                                     <td align="right">Lama Angsuran</td>
@@ -98,7 +104,7 @@ function rp($angka)
                         <br>
                         <br>
                         <div class="dt-responsive p-4" style="overflow: scroll;">
-                            <table class="table table-bordered" id="scr-vtr-dynamic">
+                            <table class="table table-bordered" id="alt-pg-dt">
                                 <col width="50">
                                 <col width="120">
                                 <col width="180">
@@ -135,7 +141,7 @@ function rp($angka)
                                         if ($a['Jatuh_Tempo'] == date('Y-m-d') && $a['Status_Angsuran'] == 'Belum Lunas') {
                                             $keterangan = "text-danger";
                                         } elseif ($a['Status_Angsuran'] == 'Belum Lunas') {
-                                            $keterangan = "text-dark";
+                                            $keterangan = "text-danger";
                                         } else {
                                             $keterangan = "text-primary";
                                         }
@@ -150,10 +156,10 @@ function rp($angka)
                                             <td align="center"><?= $telatDenda; ?></td>
                                             <td align="center"><?= $a['Status_Angsuran'] ?></td>
                                             <td align="center">
-                                                <a href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>">
+                                                <a href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi">
                                                     <button class="btn btn-icon btn-outline-primary"><i class='fas fa-check'></i></button>
                                                 </a>
-                                                <a href="acc_angsuran.php?act=batal&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>">
+                                                <a href="acc_angsuran.php?act=batal&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Batal">
                                                     <button class="btn btn-icon btn-outline-danger"><i class='fas fa-times'></i></button>
                                                 </a>
                                             </td>

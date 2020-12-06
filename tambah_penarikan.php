@@ -118,17 +118,9 @@ function rp($angka)
                                                                         $arraytotal = [];
                                                                         $sql_a = mysqli_query($konek, "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Tabungan = tabungan.ID_Tabungan");
                                                                         while ($a = mysqli_fetch_array($sql_a)) {
-
-                                                                            $sql_total       = mysqli_query($konek, "SELECT SUM(Besar_Tabungan) as tabungan from tabungan 
-                                                                                                INNER JOIN anggota on anggota.ID_Anggota = tabungan.ID_Anggota WHERE ID_Anggota='$a[ID_Anggota]' ");
-                                                                            $total_tb        = mysqli_fetch_array($sql_total);
-                                                                            $total_tabungan  = $total_tb['tabungan'];
-                                                                            array_push($arraytotal, $total_tabungan);
                                                                         ?>
-                                                                            <option value=""><?php echo $total_tb['tabungan']; ?></option>
                                                                             <option value="<?= $a['ID_Tabungan'] ?>"><?= $a['Nama_Anggota'] . " - " . $a['ID_Tabungan'] ?></option>
-                                                                        <?php }
-                                                                        ?>
+                                                                        <?php } ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -151,15 +143,13 @@ function rp($angka)
 
                                                             <div class="md-form mt-0">
                                                                 <div class="form-group row">
-                                                                    <div class="col-sm-6">
+                                                                    <div class="col-sm-8">
                                                                         <input type="number" class="form-control text-right" id="Besar_Penarikan" placeholder="0.00" name="Besar_Penarikan" required>
                                                                         <div class="valid-feedback">Valid.</div>
                                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                                     </div>
-                                                                    <div class="col-sm-6">
-                                                                        <input type="text" class="form-control" id="nominal" name="nominal" readonly>
-                                                                        <div class="valid-feedback">Valid.</div>
-                                                                        <div class="invalid-feedback">Harap isi kolom ini.</div>
+                                                                    <div class="col-sm-4">
+                                                                        <p class="text-danger">asdasdas</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -168,9 +158,9 @@ function rp($angka)
 
                                                     <div class="form-group row">
                                                         <label for="Tgl_Entri" class="col-sm-3 col-form-label text-right">Tanggal Penarikan :</label>
-                                                        <div class="col-sm-7">
+                                                        <div class="col-sm-4">
                                                             <div class="md-form mt-0">
-                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control text-right" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
+                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control text-left" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
@@ -202,7 +192,7 @@ function rp($angka)
 
 <?php include 'footer.php'; ?>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function() {
         $('#tabungan_anggota').change(function() {
             var arraytotal = "";
@@ -211,4 +201,4 @@ function rp($angka)
 
         })
     });
-</script>
+</script> -->
