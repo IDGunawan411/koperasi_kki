@@ -87,12 +87,13 @@ function rp($angka)
                                                 <td align="center"><?= $w["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
-                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $w['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $w['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $w['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $w['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $w['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $w['Saldo_Simpanan']; ?>" data-gambar="<?= $w['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
-                                                        <img src="img/<?= $w['gambar']; ?>" width="80">
+                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-gambar="<?= $w['gambar']; ?>" 
+                                                    class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
+                                                    <img src="img/<?= $w['gambar']; ?>" width="80">
                                                 </td>
                                                 <td align="center"><?= $w["Status_Simpanan"]; ?></td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php } ?-*5>
                                     </tbody>
                                 </table>
                             </div>
@@ -184,7 +185,7 @@ function rp($angka)
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editLayoutItemLabel">Sed id mi non quam iaculis pulvinar.</h5>
+                <h5 class="modal-title" id="editLayoutItemLabel">Ini gambar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
