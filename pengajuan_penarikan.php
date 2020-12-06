@@ -25,8 +25,8 @@ function rupiah($angka)
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="dt-responsive p-4">
-                            <table class=" table table-bordered display nowrap fixed" id="" style="font-size: 16px;">
+                        <div class="table-responsive p-4" class="dt-responsive p-4">
+                            <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
                                 <col width="130px">
                                 <col width="130px">
                                 <col width="350px">
@@ -64,14 +64,12 @@ function rupiah($angka)
                                             <td align="center"><?= $ps["Status_Penarikan"]; ?></td>
                                             <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                                 <td align="center">
-                                                    <?php if($ps['Status_Penarikan']=='Menunggu'){ ?>
-                                                        <a href="acc_penarikan.php?act=acc&ID_Penarikan=<?= $ps['ID_Penarikan'] ?>&ID_Tabungan=<?= $ps['ID_Tabungan'] ?>&Besar_Penarikan=<?= $ps['Besar_Penarikan'] ?>" 
-                                                        data-toggle="tooltip" data-placement="top" title="Konfirmasi">
-                                                        <button class="btn btn-icon btn-outline-primary"><i class='fa fa-check'></i></button></a>
+                                                    <?php if ($ps['Status_Penarikan'] == 'Menunggu') { ?>
+                                                        <a href="acc_penarikan.php?act=acc&ID_Penarikan=<?= $ps['ID_Penarikan'] ?>&ID_Tabungan=<?= $ps['ID_Tabungan'] ?>&Besar_Penarikan=<?= $ps['Besar_Penarikan'] ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi">
+                                                            <button class="btn btn-icon btn-outline-primary"><i class='fa fa-check'></i></button></a>
                                                     <?php } else { ?>
-                                                        <a href="acc_penarikan.php?act=batal&ID_Penarikan=<?= $ps['ID_Penarikan'] ?>&ID_Tabungan=<?= $ps['ID_Tabungan'] ?>&Besar_Penarikan=<?= $ps['Besar_Penarikan'] ?>" 
-                                                        data-toggle="tooltip" data-placement="top" title="Batal">
-                                                        <button class="btn btn-icon btn-outline-warning"><i class='fa fa-times'></i></button></a>
+                                                        <a href="acc_penarikan.php?act=batal&ID_Penarikan=<?= $ps['ID_Penarikan'] ?>&ID_Tabungan=<?= $ps['ID_Tabungan'] ?>&Besar_Penarikan=<?= $ps['Besar_Penarikan'] ?>" data-toggle="tooltip" data-placement="top" title="Batal">
+                                                            <button class="btn btn-icon btn-outline-warning"><i class='fa fa-times'></i></button></a>
                                                     <?php } ?>
                                                 </td>
                                             <?php } ?>

@@ -43,15 +43,15 @@ function rp($angka)
                             <a href="tambah_simpanan.php" class="btn btn-primary btn-sm" style="margin-bottom: 10px; height: auto" data-toggle="tooltip" data-placement="top" title="Tambah Data Simpanan"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a>
                             <br>
                             <div class="dt-responsive p-4" style="overflow-x: auto;">
-                                <table class=" table table-bordered display nowrap fixed" id="scr-vtr-dynamic" style="font-size: 16px;">
-                                    <col width="30px">
+                                <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
+                                    <!-- <col width="30px">
                                     <col width="100px">
                                     <col width="100px">
                                     <col width="300px">
-                                    <col width="150px">
+                                    <col width="350px">
                                     <col width="150px">
                                     <col width="100px">
-                                    <col width="100px">
+                                    <col width="100px"> -->
                                     <thead>
                                         <tr align="center">
                                             <th>No</th>
@@ -84,7 +84,7 @@ function rp($angka)
                                                 <td align="center"><?= $w["ID_Simpanan"]; ?></td>
                                                 <td align="center"><?= $w["ID_Tabungan"]; ?></td>
                                                 <td><?= $w["Nama_Anggota"]; ?></td>
-                                                <td align="right"><?= $w["Tanggal_Transaksi"]; ?></td>
+                                                <td align="center"><?= $w["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
                                                     <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $w['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $w['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $w['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $w['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $w['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $w['Saldo_Simpanan']; ?>" data-gambar="<?= $w['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">

@@ -14,16 +14,8 @@
                     <div class="card-body">
                         <a href="fpdfcreate.php" target="_blank" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> CETAK</a>
                         <div class="dt-responsive p-4" style="overflow: scroll;">
-                            <table class="table table-bordered display nowrap fixed" id="scr-vtr-dynamic" style="font-size: 16px;">
-                                <col width="50px">
-                                <col width="130px">
-                                <col width="300px">
-                                <col width="130px">
-                                <col width="250px">
-                                <col width="150px">
-                                <col width="250px">
-                                <col width="200px">
-                                <col width="150px">
+                            <table class="table table-bordered display nowrap" id="alt-pg-dt" style="font-size: 16px;">
+
                                 <thead>
                                     <tr align="center">
                                         <th>No</th>
@@ -58,11 +50,14 @@
                                             <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
                                             <td align="center"><?= $d["Alamat"]; ?></td>
                                             <td align="center">
-                                                <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit"><button class="btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
+                                                <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <button class=" btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
                                                 <?php if ($d['Status_Aktif'] == 'Aktif') { ?>
-                                                    <a href="status_anggota.php?act=non_aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-danger"><i class='fas fa-trash'></i></button></a>
+                                                    <a href="status_anggota.php?act=non_aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>" data-toggle="tooltip" data-placement="top" title="Tidak Aktif">
+                                                        <button class=" btn btn-icon btn-outline-danger"><i class='fas fa-trash'></i></button></a>
                                                 <?php } else { ?>
-                                                    <a href="status_anggota.php?act=aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-success"><i class='fas fa-check'></i></button></a>
+                                                    <a href="status_anggota.php?act=aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>" data-toggle="tooltip" data-placement="top" title="Aktif">
+                                                        <button class="btn btn-icon btn-outline-success"><i class='fas fa-check'></i></button></a>
                                                 <?php } ?>
                                             </td>
                                         </tr>

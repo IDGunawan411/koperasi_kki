@@ -33,14 +33,14 @@ function rp($angka)
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div style="overflow-x: auto;">
-                            <table class=" table table-bordered display nowrap fixed" id="tabel-data" style="font-size: 16px;">
+                        <div class="table-responsive p-4" style="overflow-x: auto;">
+                            <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
                                 <col width="50px">
                                 <col width="150px">
                                 <col width="150px">
                                 <col width="200px">
                                 <col width="150px">
-                                <col width="150px">
+                                <col width="350px">
                                 <col width="150px">
                                 <col width="0">
                                 <col width="150px">
@@ -119,10 +119,10 @@ function rp($angka)
                         </div>
                         <div class='border'>
                             <!-- <?php
-                            $sql_total  = mysqli_query($konek, "SELECT SUM(Saldo_Simpanan) as Total_Sukarela from simpanan WHERE Jenis_Simpanan='Simpanan Sukarela'");
-                            $total_sk   = mysqli_fetch_array($sql_total);
-                            $sk         = $total_sk['Total_Sukarela'];
-                            ?>
+                                    $sql_total  = mysqli_query($konek, "SELECT SUM(Saldo_Simpanan) as Total_Sukarela from simpanan WHERE Jenis_Simpanan='Simpanan Sukarela'");
+                                    $total_sk   = mysqli_fetch_array($sql_total);
+                                    $sk         = $total_sk['Total_Sukarela'];
+                                    ?>
                             <p class="p-2">Total Simpanan Sukarela : <?= rp($total_simpanan); ?></p> -->
                         </div>
                     </div>

@@ -37,15 +37,15 @@ if (isset($_GET['act'])) {
                                             Status_Pinjaman='Konfirmasi'
                                             WHERE ID_Pinjaman='$idPinjaman'");
 
-        // echo "<script>document.location.href = 'pengajuan_pinjaman.php';</script>";
+        echo "<script>document.location.href = 'pengajuan_pinjaman.php';</script>";
     }
 
-    if ($_GET['act'] == 'tolak') {
+    if ($_GET['act'] == 'batal') {
         $ID_Pinjaman = $_GET['ID_Pinjaman'];
 
 
         $update = mysqli_query($konek, "UPDATE pinjaman SET
-                                            Status_Pinjaman='Konfirmasi'
+                                            Status_Pinjaman='Menunggu'
                                             WHERE ID_Pinjaman='$ID_Pinjaman'");
 
         echo "<script>document.location.href = 'pengajuan_pinjaman.php';</script>";

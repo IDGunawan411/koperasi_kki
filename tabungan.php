@@ -33,8 +33,8 @@ function rp($angka)
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive p-4">
-                            <table id="example3" class="table table-bordered display nowrap fixed" style="font-size: 16px;">
+                        <div class="table-responsive p-4" style="overflow: scroll;">
+                            <table class="table table-bordered display nowrap" id="alt-pg-dt" style="font-size: 16px;">
                                 <col width="50px">
                                 <col width="130px">
                                 <col width="130px">
@@ -131,15 +131,6 @@ function rp($angka)
                                         <td align="right"><b><?php if (isset($total_tabungan)) {
                                                                     echo rp($total_tabungan);
                                                                 } ?></b></td>
-                                    </tr>
-                                    <tr align="center">
-                                        <th>No</th>
-                                        <th>ID Tabungan</th>
-                                        <th>ID Anggota</th>
-                                        <th>Nama Anggota</th>
-                                        <th>Tanggal Masuk</th>
-                                        <th>Simpanan Pokok</th>
-                                        <th>Saldo Tabungan</th>
                                     </tr>
 
                                 </tfoot>

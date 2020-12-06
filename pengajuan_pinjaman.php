@@ -37,9 +37,18 @@ function rp($angka)
                         </div>
                         <a href="tambah_pinjaman.php" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
                         <div class="dt-responsive p-4" style="overflow-y: scroll;">
-                            <table id="order-table" class="table nowrap table-bordered">
-                                <!-- <col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
-                                <col width="50px"> -->
+                            <table id="alt-pg-dt" class="table nowrap table-bordered">
+                                <col width="50">
+                                <col width="130">
+                                <col width="130">
+                                <col width="300">
+                                <col width="150">
+                                <col width="150">
+                                <col width="100">
+                                <col width="100">
+                                <col width="150">
+                                <col width="100">
+                                <col width="150">
                                 <thead>
                                     <tr align="center">
                                         <th>No</th>
@@ -66,26 +75,9 @@ function rp($angka)
                                         $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota) WHERE ID_Anggota = '$da[ID_Anggota]'  ORDER BY ID_Pinjaman ASC");
                                     }
                                     while ($p = mysqli_fetch_array($sql)) {
-
-                                        // $st_angsur = mysqli_query($konek, "SELECT SUM(Besar_Angsuran) as total_angsur FROM angsuran WHERE Status_Angsuran='Lunas'
-                                        // AND ID_Pinjaman='$p[ID_Pinjaman]'");
-                                        // $dta = mysqli_fetch_array($st_angsur);
-
-                                        // $st_angsur1 = mysqli_query($konek, "SELECT SUM(Besar_Angsuran) as sisa_angsur FROM angsuran
-                                        // WHERE ID_Pinjaman='$p[ID_Pinjaman]'");
-                                        // $dta1 = mysqli_fetch_array($st_angsur1);
-
-                                        // $total_agsur = $dta['total_angsur'];
-                                        // if ($dta['total_angsur'] == $dta1['sisa_angsur']) {
-                                        //     $text_lunas = "text-primary";
-                                        //     $status_lunas = "Lunas";
-                                        // } else {
-                                        //     $text_lunas = "";
-                                        //     $status_lunas = "Belum Lunas";
-                                        // }
-
+                                        $color = "color:" . ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                     ?>
-                                        <tr class="<?= $text_lunas; ?>">
+                                        <tr style="<?= $color; ?>">
                                             <td align="center"><?= $i; ?></td>
                                             <td align="center"><?= $p["ID_Pinjaman"]; ?></td>
                                             <td align="center"><?= $p["Tgl_Entri"]; ?></td>

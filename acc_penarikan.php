@@ -8,9 +8,9 @@ if (isset($_GET['act'])) {
         $ID_Penarikan    = $_GET['ID_Penarikan'];
         $ID_Tabungan     = $_GET['ID_Tabungan'];
         $Besar_Penarikan = $_GET['Besar_Penarikan'];
-        
-        $qt=mysqli_query($konek,"SELECT * FROM tabungan WHERE ID_Tabungan = '$ID_Tabungan'");
-        $dt=mysqli_fetch_array($qt);
+
+        $qt = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan = '$ID_Tabungan'");
+        $dt = mysqli_fetch_array($qt);
         $Total = $dt['Besar_Tabungan'] - $Besar_Penarikan;
 
         mysqli_query($konek, "UPDATE penarikan SET
@@ -28,8 +28,8 @@ if (isset($_GET['act'])) {
         $ID_Tabungan     = $_GET['ID_Tabungan'];
         $Besar_Penarikan = $_GET['Besar_Penarikan'];
 
-        $qt=mysqli_query($konek,"SELECT * FROM tabungan WHERE ID_Tabungan = '$ID_Tabungan'");
-        $dt=mysqli_fetch_array($qt);
+        $qt = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan = '$ID_Tabungan'");
+        $dt = mysqli_fetch_array($qt);
         $Total = $dt['Besar_Tabungan'] + $Besar_Penarikan;
         //  echo "<a>ID Penarikan : $ID_Penarikan <br> 
         //            ID Tabungan : $ID_Tabungan <br> 

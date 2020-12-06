@@ -46,7 +46,7 @@ function rp($angka)
                             </div>
                             <a href="tambah_pinjaman.php" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
                             <div class="dt-responsive p-4" style="overflow-y: scroll;">
-                                <table id="order-table" class="table nowrap table-bordered">
+                                <table id="alt-pg-dt" class="table nowrap table-bordered">
                                     <!-- <col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
                                     <col width="50px"> -->
                                     <thead>
@@ -71,8 +71,9 @@ function rp($angka)
                                         <?php
                                         $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota)  ORDER BY ID_Pinjaman ASC");
                                         while ($p = mysqli_fetch_array($sql)) {
+                                            $color = "color:" . ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                         ?>
-                                            <tr class="<?= $text_lunas; ?>">
+                                            <tr style="<?= $color; ?>">
                                                 <td align="center"><?= $i; ?></td>
                                                 <td align="center"><?= $p["ID_Pinjaman"]; ?></td>
                                                 <td align="center"><?= $p["Tgl_Entri"]; ?></td>

@@ -42,8 +42,8 @@ function rp($angka)
                         <div class="card-body">
                             <a href="tambah_simpanan.php" class="btn btn-primary btn-sm" style="margin-bottom: 10px; height: auto" data-toggle="tooltip" data-placement="top" title="Tambah Data Simpanan"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a>
                             <br>
-                            <div style="overflow-x: auto;">
-                                <table class=" table table-bordered display nowrap fixed" id="tabel-data" style="font-size: 16px;">
+                            <div class="dt-responsive p-4" style="overflow-x: auto;">
+                                <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
                                     <col width="30px">
                                     <col width="100px">
                                     <col width="100px">

@@ -27,7 +27,7 @@
 
 
                         <br>
-                        <form method="post" action="" class="was-validated" style="border: 4px">
+                        <form method="post" action="" class="" style="border: 4px">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card">
@@ -61,7 +61,7 @@
 
 
 
-                                                if ($namaAnggota == '' | $jenisKelamin == '' | $tempatLahir == '' | $tanggalLahir == '' | $tanggalEntri == '' | $pendidikanTerakhir == '' | $statusPerkawinan == '' | $simpananPokok == '' | $noKtp == '' | $noKK == '' | $noTelp == '' | $noRek == '' | $alamat == '') {
+                                                if ($namaAnggota == '' | $jenisKelamin == '' | $tempatLahir == '' | $tanggalLahir == '' | $tanggalEntri == '' | $pendidikanTerakhir == '' | $statusPerkawinan == '' | $simpananPokok == '' | $noKtp == '' | $noKK == '' | $noTelp == '' | $alamat == '') {
                                                     echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
                                                         Data Belum lengkap !!!
                                                     </div>";
@@ -162,7 +162,7 @@
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control datetimepicker-input" id="datepicker" name="Tanggal_Lahir" data-toggle="datetimepicker" data-target="#datepicker">
+                                                                <input type="date" class="form-control" id="Tanggal_Lahir" name="Tanggal_Lahir" required>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
@@ -175,7 +175,7 @@
                                                 <label for="Tanggal_Entri" class="col-sm-3 col-form-label text-right">Tanggal Masuk :</label>
                                                 <div class="col-sm-8">
                                                     <div class="md-form mt-0">
-                                                        <input type="date" class="form-control" id="Tanggal_Entri" value="<?= date('Y-m-d'); ?>" name="Tanggal_Entri" required readonly>
+                                                        <input type="text" class="form-control" id="Tanggal_Entri" value="<?= date('d F Y'); ?>" name="Tanggal_Entri" required readonly>
                                                         <div class="valid-feedback">Valid.</div>
                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                     </div>
@@ -276,7 +276,7 @@
                                                 <label for="No_Rek" class="col-sm-3 col-form-label text-right">No.Rekening :</label>
                                                 <div class="col-sm-8">
                                                     <div class="md-form mt-0">
-                                                        <input type="number" class="form-control" id="No_Rek" placeholder="Masukan No.Rekening" name="No_Rek" required>
+                                                        <input type="number" class="form-control" id="No_Rek" placeholder="Masukan No.Rekening" name="No_Rek">
                                                         <div class="valid-feedback">Valid.</div>
                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                     </div>

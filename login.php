@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dta    = mysqli_fetch_assoc($data);
         $st     = mysqli_query($konek, "SELECT * FROM anggota WHERE ID_User='$dta[ID_User]'");
         $sta    = mysqli_fetch_assoc($st);
-        
-        if($sta['Status_Aktif']=='Non Aktif'){
+
+        if ($sta['Status_Aktif'] == 'Non Aktif') {
             $status = true;
-        }else if ($dt > 0) {
+        } else if ($dt > 0) {
             // session_start();
             $_SESSION['login']    = true;
             $_SESSION['Username'] = $dta['Username'];
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-fluid h-100">
             <div class="row flex-row h-100 bg-white">
                 <div class="col-xl-9 col-lg-6 col-md-5 my-auto p-0 d-md-block d-lg-block d-sm-none d-none">
-                    <div class="lavalite-bg"style="background-image: url('img/auth/4041086.jpg');background-size:100%;
+                    <div class="lavalite-bg" style="background-image: url('img/auth/4041086.jpg');background-size:100%;
                     background-repeat-no-repeat;background-position:center;">
                     </div>
                 </div>
