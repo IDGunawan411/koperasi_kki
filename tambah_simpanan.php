@@ -1,26 +1,5 @@
 <?php $menu = 'wajib'; ?>
 <?php include 'header.php'; ?>
-<!-- memunculkan gambar -->
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        function bacaGambar(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#v_gambar').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#gambar").change(function() {
-            bacaGambar(this);
-        });
-    })
-</script>
 
 <div class="main-content">
     <div class="container-fluid">
@@ -223,7 +202,7 @@
                                                 <label for="Jenis_Simpanan" class="col-sm-3 col-form-label text-right">Pilih Jenis Simpanan :</label>
                                                 <div class="col-sm-7">
                                                     <div class="md-form mt-0">
-                                                        <select name="Jenis_Simpanan" class="form-control" id="exampleSelectGender">
+                                                        <select name="Jenis_Simpanan" class="form-control" id="Jenis_Simpanan">
                                                             <option selected value="0" readonly>-- Pilih Jenis Simpanan --</option>
                                                             <?php
                                                             $sql_js = mysqli_query($konek, "SELECT * FROM jenis_simpanan");
@@ -242,7 +221,7 @@
                                                     <div class="md-form mt-0">
                                                         <div class="form-group row">
                                                             <div class="col-sm-7">
-                                                                <input type="text" value="<?= date('Y-m-d'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required readonly>
+                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control" id="Tanggal_Transaksi" name="Tanggal_Transaksi" required readonly>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
@@ -297,3 +276,36 @@
 </div>
 
 <?php include 'footer.php'; ?>
+<!-- memunculkan gambar -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#Jenis_Simpanan').change(function() {
+            jenis_simpanan = $(this).val();
+            console.log(jenis_simpanan);
+            if (jenis_simpanan == 'Simpanan Wajib') {
+                $('#Saldo_Simpanan').val(30000)
+            } else {
+                $('#Saldo_Simpanan').val('')
+            }
+        })
+
+
+
+        function bacaGambar(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#v_gambar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#gambar").change(function() {
+            bacaGambar(this);
+        });
+    })
+</script>

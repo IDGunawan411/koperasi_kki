@@ -191,7 +191,7 @@ if (isset($nama)) {
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="widget">
                     <div class="widget-body">
-                          <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div class="state">
                                 <h6>Jumlah Anggota</h6>
                                 <h4 class="text-info"><?= $dataAnggota['totalAnggota']; ?></h4>
@@ -210,8 +210,8 @@ if (isset($nama)) {
                             <div class="state">
                                 <h6>Total Tabungan</h6>
                                 <h4 class="text-primary"><?php if (isset($total_tabungan)) {
-                                        echo rp($total_tabungan);
-                                    } ?></h4>
+                                                                echo rp($total_tabungan);
+                                                            } ?></h4>
                             </div>
                             <div class="icon">
                                 <i class="ik ik-thumbs-up text-primary"></i>
@@ -227,8 +227,8 @@ if (isset($nama)) {
                             <div class="state">
                                 <h6>Total Simpanan</h6>
                                 <h4 class="text-warning"><?php if (isset($total_simpanan)) {
-                                        echo rp($total_simpanan + $total_pokok);
-                                    } ?></h4>
+                                                                echo rp($total_simpanan + $total_pokok);
+                                                            } ?></h4>
                             </div>
                             <div class="icon">
                                 <i class="text-warning ik ik-calendar"></i>
@@ -244,8 +244,8 @@ if (isset($nama)) {
                             <div class="state">
                                 <h6>Total Penarikan</h6>
                                 <h4 class="text-success"><?php if (isset($total_penarikan)) {
-                                        echo rp($total_penarikan);
-                                    } ?></h4>
+                                                                echo rp($total_penarikan);
+                                                            } ?></h4>
                             </div>
                             <div class="icon">
                                 <i class="ik ik-message-square text-success"></i>
@@ -261,8 +261,8 @@ if (isset($nama)) {
                             <div class="state">
                                 <h6>Total Pinjaman</h6>
                                 <h4 class="text-danger"><?php if (isset($total_pinjaman)) {
-                                        echo rp($total_pinjaman);
-                                    } ?></h4>
+                                                            echo rp($total_pinjaman);
+                                                        } ?></h4>
                             </div>
                             <div class="icon">
                                 <i class="ik ik-message-square text-danger"></i>

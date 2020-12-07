@@ -59,8 +59,8 @@ function rp($angka)
 
                                                         if ($idTabungan == '' | $besarPenarikan == '' | $tglEntri == '' | $idPenarikan == '') {
                                                             echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
-                                                    Data Belum lengkap !!!
-                                                    </div>";
+                                                        Data Belum lengkap !!!
+                                                        </div>";
                                                         } else {
                                                             //simpan data penarikan
                                                             $simpan = mysqli_query(
@@ -111,9 +111,11 @@ function rp($angka)
                                                             <label for="ID_Tabungan" class="col-sm-3 col-form-label text-right">Anggota :</label>
                                                             <div class="col-sm-7">
                                                                 <div class="md-form mt-0">
-                                                                    <select name="ID_Tabungan" class="form-control" id="exampleSelectGender">
+                                                                    <select name="ID_Tabungan" class="form-control" id="tabungan_anggota">
                                                                         <option selected value="0" readonly>-- Pilih Tabungan --</option>
                                                                         <?php
+
+                                                                        $arraytotal = [];
                                                                         $sql_a = mysqli_query($konek, "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Tabungan = tabungan.ID_Tabungan");
                                                                         while ($a = mysqli_fetch_array($sql_a)) {
                                                                         ?>
@@ -138,19 +140,27 @@ function rp($angka)
                                                     <div class="form-group row">
                                                         <label for="Besar_Penarikan" class="col-sm-3 col-form-label text-right">Besar Penarikan :</label>
                                                         <div class="col-sm-7">
+
                                                             <div class="md-form mt-0">
-                                                                <input type="number" class="form-control text-right" id="Besar_Penarikan" placeholder="0.00" name="Besar_Penarikan" required>
-                                                                <div class="valid-feedback">Valid.</div>
-                                                                <div class="invalid-feedback">Harap isi kolom ini.</div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-8">
+                                                                        <input type="number" class="form-control text-right" id="Besar_Penarikan" placeholder="0.00" name="Besar_Penarikan" required>
+                                                                        <div class="valid-feedback">Valid.</div>
+                                                                        <div class="invalid-feedback">Harap isi kolom ini.</div>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <p class="text-danger">asdasdas</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label for="Tgl_Entri" class="col-sm-3 col-form-label text-right">Tanggal Penarikan :</label>
-                                                        <div class="col-sm-7">
+                                                        <div class="col-sm-4">
                                                             <div class="md-form mt-0">
-                                                                <input type="text" value="<?= date('Y-m-d'); ?>" class="form-control text-right" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
+                                                                <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control text-left" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
                                                                 <div class="valid-feedback">Valid.</div>
                                                                 <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
@@ -181,3 +191,14 @@ function rp($angka)
 
 
 <?php include 'footer.php'; ?>
+
+<!-- <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabungan_anggota').change(function() {
+            var arraytotal = "";
+            console.log(arraytotal);
+            console.log("COBA")
+
+        })
+    });
+</script> -->

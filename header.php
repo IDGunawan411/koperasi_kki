@@ -38,6 +38,26 @@ $date->setTimeZone($timezone);
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+
+<style>
+    .header,
+    .footer {
+        width: 100%;
+        position: sticky;
+        background: #fff;
+        padding: 10px 0;
+        color: black;
+
+    }
+
+    .header {
+        top: 0;
+    }
+
+    .footer {
+        bottom: 0;
+    }
+</style>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -193,138 +213,71 @@ $date->setTimeZone($timezone);
                                 $pSimpanan = mysqli_query($konek, "SELECT COUNT(ID_Simpanan) as total_simpanan FROM simpanan WHERE Status_Simpanan ='Menunggu'");
                                 $dSimpanan = mysqli_fetch_array($pSimpanan);
                                 $total_simpanan = $dSimpanan['total_simpanan'];
+
+                                $pPenarikan = mysqli_query($konek, "SELECT COUNT(ID_Penarikan) as total_penarikan FROM penarikan WHERE Status_Penarikan ='Menunggu'");
+                                $dPenarikan = mysqli_fetch_array($pPenarikan);
+                                $total_penarikan = $dPenarikan['total_penarikan'] + $total_simpanan;
+
+                                $pPinjaman = mysqli_query($konek, "SELECT COUNT(ID_Pinjaman) as total_pinjaman FROM pinjaman WHERE Status_Pinjaman ='Menunggu'");
+                                $dPinjaman = mysqli_fetch_array($pPinjaman);
+                                $total_pinjaman = $dPinjaman['total_pinjaman'] + $total_penarikan;
                                 ?>
                                 <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ik ik-bell" data-toggle="tooltip" data-placement="top" title="Notif Simpanan"></i><span class="badge bg-danger"><?= $total_simpanan; ?></span></button>
+                                    <i class="ik ik-bell" data-toggle="tooltip" data-placement="top" title="Notif Simpanan"></i><span class="badge bg-danger"><?= $total_pinjaman; ?></span></button>
 
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" style=" height: 500px; width: 350px; overflow: auto;" aria-labelledby="notiDropdown">
-                                    <h4 class="header">Notifications</h4>
+
+                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" style=" height: 500px; width: 400px; overflow: auto;" aria-labelledby="notiDropdown">
+                                    <h3 class="header" align="right">Notifications <span class="badge badge-danger text-bold" style="margin-left: 60px;"><?= $total_pinjaman; ?> NEW</span></h3>
+
                                     <div class="notifications-wrap">
                                         <!-- Notifikasi Simpanan -->
                                         <?php
-                                        $qSimpanan = mysqli_query($konek, "SELECT * FROM simpanan INNER JOIN anggota USING(ID_Tabungan) WHERE Status_Simpanan ='Menunggu'");
-                                        while ($dSimpanan = mysqli_fetch_array($qSimpanan)) {
-                                            if ($dSimpanan['Jenis_Simpanan'] == 'Simpanan Wajib') {
+                                        $qNotif = mysqli_query($konek, "SELECT A.* FROM (SELECT c.Nama_Anggota, 'simpanan' as menu, a.Tanggal_Transaksi as tanggal, a.Jenis_Simpanan as jenis_simpanan FROM simpanan as a INNER JOIN anggota as c USING(ID_Tabungan) WHERE Status_Simpanan ='Menunggu'
+                                        UNION
+                                        SELECT d.Nama_Anggota, 'penarikan' as menu, b.Tgl_Entri as tanggal, '' as jenis_simpanan FROM penarikan as b INNER JOIN anggota as d USING(ID_Tabungan) WHERE Status_Penarikan = 'Menunggu'
+                                        UNION
+                                        SELECT e.Nama_Anggota, 'pinjaman' as menu, f.Tgl_Entri as tanggal, '' as jenis_simpanan FROM pinjaman AS f INNER JOIN anggota as e USING(ID_Anggota) WHERE Status_pinjaman ='Menunggu') as A ORDER BY A.tanggal DESC");
+                                        while ($dNotif = mysqli_fetch_array($qNotif)) {
+                                            if ($dNotif['jenis_simpanan'] == 'Simpanan Wajib') {
                                                 $simpanan = "warning";
                                             } else {
                                                 $simpanan = "warning";
                                             }
-
-                                        ?>
-
-                                            <a href="pengajuan_simpanan_acc.php" class="media">
-                                                <span class="media-body">
-                                                    <small><i class="ml-4 text-red"><?= $dSimpanan['Tanggal_Transaksi'] ?></i></small><br />
-                                                    <span class="media-content mr-2 h6"><i class="text-danger ik ik-info"></i></span>
-                                                    <span class="media-content h6 text-dark text-red"><?= $dSimpanan['Nama_Anggota']; ?> - </span>
-                                                    <span class="media-content h6 text-<?= $simpanan; ?>"><?= $dSimpanan['Jenis_Simpanan']; ?></span>
-                                                </span>
-                                            </a>
-                                        <?php } ?>
-                                        <!-- END Notifikasi Simpanan -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <?php
-                                $pPenarikan = mysqli_query($konek, "SELECT COUNT(ID_Penarikan) as total_penarikan FROM penarikan WHERE Status_Penarikan ='Menunggu'");
-                                $dPenarikan = mysqli_fetch_array($pPenarikan);
-                                $total_penarikan = $dPenarikan['total_penarikan'];
-                                ?>
-                                <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ik ik-bell" data-toggle="tooltip" data-placement="top" title="Notif Penarikan"></i><span class="badge bg-danger"><?= $total_penarikan; ?></span></button>
-
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" style=" height: 500px; width: 350px; overflow: auto;" aria-labelledby="notiDropdown">
-                                    <h4 class="header">Notifications</h4>
-                                    <div class="notifications-wrap">
-
-                                        <?php
-                                        $qPenarikan = mysqli_query($konek, "SELECT * FROM penarikan INNER JOIN anggota USING(ID_Tabungan) WHERE Status_Penarikan = 'Menunggu' ");
-                                        while ($dPenarikan = mysqli_fetch_array($qPenarikan)) {
-                                        ?>
-                                            <a href="pengajuan_penarikan.php" class="media"">
-                                                <span class=" media-body">
-                                                <small><i class="ml-4"><?php echo date('d F Y, h:i:s A') ?></i></small><br />
-                                                <span class="media-content mr-2 h6"><i class="text-danger ik ik-info"></i></span>
-                                                <span class="media-content h6 text-danger font-weight-bold"><?= $dPenarikan['Nama_Anggota']; ?> - </span>
-                                                <span class="media-content h6 text-red">Penarikan</span>
-                                                </span>
-                                            </a>
-                                        <?php } ?>
-                                        <!-- END Notifikasi Penarikan -->
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="dropdown">
-                                <?php
-                                $pPinjaman = mysqli_query($konek, "SELECT COUNT(ID_Pinjaman) as total_pinjaman FROM pinjaman WHERE Status_Pinjaman ='Menunggu'");
-                                $dPinjaman = mysqli_fetch_array($pPinjaman);
-                                $total_pinjaman = $dPinjaman['total_pinjaman'];
-                                ?>
-                                <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ik ik-bell" data-toggle="tooltip" data-placement="top" title="Notif Pinjaman"></i><span class="badge bg-danger"><?= $total_pinjaman; ?></span></button>
-
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" style=" height: 500px; width: 350px; overflow: auto;" aria-labelledby="notiDropdown">
-                                    <h4 class="header">Notifications</h4>
-                                    <div class="notifications-wrap">
-
-                                        <!-- Notifikasi Pinjaman -->
-                                        <?php
-                                        $qPinjaman = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota) WHERE Status_pinjaman ='Menunggu'");
-                                        while ($dPinjaman = mysqli_fetch_array($qPinjaman)) {
-                                        ?>
-                                            <a href="pengajuan_pinjaman.php" class="media">
-                                                <span class="media-body">
-                                                    <small><i class="ml-4"><?php echo date('j F Y, g:i a',) ?></i></small><br />
-                                                    <span class="media-content mr-2 h6"><i class="text-danger ik ik-info"></i></span>
-                                                    <span class="media-content h6 text-danger font-weight-bold"><?= $dPinjaman['Nama_Anggota']; ?> - </span>
-                                                    <span class="media-content h6 text-red">Pinjaman</span>
-                                                </span>
-                                            </a>
-
-                                        <?php } ?>
-                                        <!-- END Notifikasi Pinjaman -->
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        <?php } else { ?>
-                            <div class="dropdown">
-                                <button class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ik ik-bell"></i><span class="badge bg-danger">1</span></button>
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
-                                    <h4 class="header">Notifications</h4>
-                                    <div class="notifications-wrap">
-                                        <?php
-                                        $qa = mysqli_query($konek, "SELECT * FROM angsuran INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota 
-                                        INNER JOIN user on user.ID_User = anggota.ID_User WHERE user.ID_User='$_SESSION[ID_User]'");
-                                        while ($da = mysqli_fetch_array($qa)) {
-                                            if ($da['Jatuh_Tempo'] == '2020-12-23' && $da['Status_Angsuran'] == 'Belum Lunas') {
-                                                $Jatuh_Tempo = " - Jatuh Tempo";
-                                                $JT_Text = "text-danger";
-                                            } else {
-                                                $Jatuh_Tempo = "";
-                                                $JT_Text = "text-dark";
+                                            $namamenu = "";
+                                            $link = "";
+                                            if ($dNotif['menu'] == 'simpanan') {
+                                                $namamenu = $dNotif['jenis_simpanan'];
+                                                $link = 'pengajuan_simpanan.php';
+                                            } elseif ($dNotif['menu'] == 'penarikan') {
+                                                $namamenu = 'Penarikan';
+                                                $link = 'pengajuan_penarikan.php';
+                                            } elseif ($dNotif['menu'] == 'pinjaman') {
+                                                $namamenu = 'Pinjaman';
+                                                $link = 'pengajuan_pinjaman.php';
                                             }
                                         ?>
-                                            <a href="#" class="media">
+
+                                            <a href="<?= $link; ?>" class="media">
                                                 <span class="media-body">
-                                                    <span class="media-content mr-2 h6"><i class="text-info ik ik-info"></i></span>
-                                                    <span class="media-content h6 <?= $JT_Text; ?> font-weight-bold"><?= $da['ID_Angsuran'] . $Jatuh_Tempo; ?></span>
+                                                    <small><i class="ml-4 text-red"><?= $dNotif['tanggal'] ?></i></small><br />
+                                                    <span class="media-content mr-2 h6"><i class="text-danger ik ik-info"></i></span>
+                                                    <span class="media-content h6 text-dark text-red"><?= $dNotif['Nama_Anggota']; ?> - </span>
+                                                    <span class="media-content h6 text-<?= $simpanan; ?>">
+                                                        <?= $namamenu ?>
+                                                    </span>
                                                 </span>
                                             </a>
+
                                         <?php } ?>
+
                                     </div>
                                     <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
                                 </div>
                             </div>
+
+
                         <?php } ?>
+
                         <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>

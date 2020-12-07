@@ -13,18 +13,26 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="fpdfcreate.php" target="_blank" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> CETAK</a>
-                        <div class="dt-responsive p-4" style="overflow: scroll;">
-                            <table class="table table-bordered display nowrap" id="alt-pg-dt" style="font-size: 16px;">
-
+                        <div class="dt-responsive p-4">
+                            <table class="table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
+                                <col width="50px">
+                                <col width="130px">
+                                <col width="300px">
+                                <col width="130px">
+                                <col width="250px">
+                                <col width="150px">
+                                <col width="250px">
+                                <col width="200px">
+                                <col width="150px">
                                 <thead>
                                     <tr align="center">
                                         <th>No</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis Kelamin</th>
-                                        <!-- <th>Tempat, Tanggal Lahir</th> -->
+                                        <th>Tempat, Tanggal Lahir</th>
                                         <th>No Telp</th>
-                                        <!-- <th>Tanggal Entri</th> -->
+                                        <th>Tanggal Entri</th>
                                         <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -35,42 +43,36 @@
                                     $sql = mysqli_query($konek, "SELECT * FROM anggota ORDER BY ID_Anggota ASC");
                                     while ($d = mysqli_fetch_array($sql)) {
                                         if ($d['Status_Aktif'] == 'Aktif') {
-                                            $status = "text-primary";
+                                            $status = "text-black";
                                         } else {
                                             $status = "text-danger";
                                         }
                                     ?>
                                         <tr class="<?= $status; ?>">
                                             <td align="center"><?= $i; ?></td>
-                                            <td align="center"><?= tgl($d["Tanggal_Entri"]); ?></td>
-                                            <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: blue;" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
+                                            <?php if ($d['Status_Aktif'] == 'Aktif') { ?>
+                                                <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: black; font-weight:bold" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <?php } else { ?>
+                                                <td><a href="history_anggota.php?ID_Tabungan=<?= $d['ID_Tabungan']; ?>&ID_Anggota=<?= $d['ID_Anggota']; ?>" style="color: red; font-weight:bold" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Detail"><?= $d["Nama_Anggota"]; ?></a></td>
+                                            <?php } ?>
                                             <td align="center"><?= $d["Jenis_Kelamin"]; ?></td>
-                                            <!-- <td align="left"><?= $d["Tempat_Lahir"]; ?>, <?= $d["Tanggal_Lahir"]; ?></td> -->
+                                            <td align="left"><?= $d["Tempat_Lahir"]; ?>, <?= $d["Tanggal_Lahir"]; ?></td>
                                             <td align="center"><?= $d["No_Telp"]; ?></td>
-                                            <!-- <td align="center"><?= tgl($d["Tanggal_Entri"]); ?></td> -->
+                                            <td align="center"><?= $d["Tanggal_Entri"]; ?></td>
                                             <td align="center"><?= $d["Alamat"]; ?></td>
                                             <td align="center">
-                                                <a href="#ModalInfoAnggota" title="Info" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <button class=" btn btn-icon btn-outline-info"><i class='fas fa-info'></i></button></a> |
-                                                <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <button class=" btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
+                                                <a href="edit_anggota.php?ID_Anggota=<?= $d['ID_Anggota'] ?>" title="Edit"><button class="btn btn-icon btn-outline-primary"><i class='fas fa-edit'></i></button></a> |
                                                 <?php if ($d['Status_Aktif'] == 'Aktif') { ?>
-                                                    <a href="status_anggota.php?act=non_aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>" data-toggle="tooltip" data-placement="top" title="Tidak Aktif">
-                                                        <button class=" btn btn-icon btn-outline-danger"><i class='fas fa-trash'></i></button></a>
+                                                    <a href="status_anggota.php?act=non_aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-danger"><i class='fas fa-trash'></i></button></a>
                                                 <?php } else { ?>
-                                                    <a href="status_anggota.php?act=aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>" data-toggle="tooltip" data-placement="top" title="Aktif">
-                                                        <button class="btn btn-icon btn-outline-success"><i class='fas fa-check'></i></button></a>
+                                                    <a href="status_anggota.php?act=aktif&ID_Anggota=<?= $d['ID_Anggota'] ?>"><button class="btn btn-icon btn-outline-success"><i class='fas fa-check'></i></button></a>
                                                 <?php } ?>
                                             </td>
                                         </tr>
                                         <?php $i++ ?>
                                     <?php } ?>
                                 </tbody>
-                                <script>
-                                    $('#alt-pg-dt').DataTable({
-                                        "pagingType": "full_numbers"
-                                    });
-                                </script>
                             </table>
                         </div>
                     </div>
