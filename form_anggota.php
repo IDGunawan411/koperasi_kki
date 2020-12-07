@@ -12,20 +12,17 @@
         </ol>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card bg-form-anggota">
                     <div class="card-body">
 
                         <div class="row clearfix">
-                            <div class="col-md-12" align="center">
+                            <div class="col-md-6 border shadow-sm bg-white container" align="center">
                                 <h2><b>FORMULIR</b></h2>
                                 <h2><u>PERMOHONAN MENJADI ANGGOTA</u></h2>
                                 <h5><b>Status Keanggotaan : Dewasa</b></h5>
                             </div>
-                            <a href="anggota.php"><button type="button" class="btn btn-danger btn-sm" style="height: auto"><i class="ik ik-arrow-left"></i>&nbsp; Kembali</button></a>
                         </div>
-
-
-
+                        <a href="anggota.php"><button type="button" class="btn btn-danger btn-sm" style="height: auto"><i class="ik ik-arrow-left"></i>&nbsp; Kembali</button></a>
                         <br>
                         <form method="post" action="" class="" style="border: 4px">
                             <div class="row">

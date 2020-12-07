@@ -4,16 +4,23 @@
 
 <div class="main-content">
     <div class="container-fluid">
-        <ol class="breadcrumb mb-3" style="font-size: 16px">
-            <li><i class="fa fa-home" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item" style="margin-left: 10px"><a href="../index.php">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="pinjaman.php">Pinjaman</a></li>
-            <li class="breadcrumb-item no-drop active">Tambah Pinjaman</li>
-            <li class="ml-auto active font-weight-bold">Tambah Pinjaman</li>
-        </ol>
+        <?php if ($_SESSION['Level'] == 'Petugas') { ?>
+            <ol class="breadcrumb mb-4" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="breadcrumb-item" style="margin-left: 10px"><a href="index.php">Dashboard</a></li>
+                <li class="breadcrumb-item no-drop active"><a href="simpanan_wajib.php">Pinjaman</li></a>
+                <li class="breadcrumb-item no-drop active">Tambah Pinjaman</li>
+                <li class="ml-auto active font-weight-bold">Pinjaman</li>
+            </ol>
+        <?php } else { ?>
+            <ol class="breadcrumb" style="font-size: 16px">
+                <li><i class="fa fa-home" aria-hidden="true"></i></li>
+                <li class="ml-auto active font-weight-bold">Tambah Pinjaman</li>
+            </ol>
+        <?php } ?>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card bg-form-tambah-pinjaman">
                     <div class="card-body">
 
                         <div class="row clearfix">
@@ -36,6 +43,11 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card">
+                                        <div class="p-3 font-weight-bold bg-dark text-center">
+                                            <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                            <a class="h5 text-right text-white col-md-10">Pengajuan Pinjaman</a>
+                                            <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                        </div>
                                         <div class="card-body shadow p-3 rounded">
                                             <div class="card">
 
@@ -86,13 +98,6 @@
                                                 $nextNoUrut     = $lastNoUrut + 1;
                                                 $nextNoPinjaman = $today . sprintf('%04s', $nextNoUrut);
                                                 ?>
-
-
-                                                <div class="btn btn-md btn-danger btn-block" style="height: auto">
-                                                    <i class="fa fa-lock fa-md"></i>
-                                                    <span>Data Pribadi</span>
-                                                </div>
-
                                                 <br>
                                                 <div class="form-group row">
                                                     <label for="ID_Pinjaman" class="col-sm-3 col-form-label text-right">ID Pinjaman :</label>

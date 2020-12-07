@@ -74,198 +74,186 @@ if (isset($nama)) {
             <li><i class="fa fa-home" aria-hidden="true"></i></li>
             <li class="breadcrumb-item no-drop active" style="margin-left: 10px">Dashboard</li>
             <li class="ml-auto active font-weight-bold">Dashboard</li>
-
         </ol>
-        <div class="row clearfix">
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Simpanan</h3>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="ik ik-minus minimize-card"></i></li>
-                            </ul>
+        <div class="card p-2 bg-form-dashboard">
+            <!-- <div class="row clearfix">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Simpanan</h3>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="ik ik-minus minimize-card"></i></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body feeds-widget">
-                        <div class="feed-item">
-                            <a href="#">
-                                <div class="feeds-left"><i class="ik ik-info text-info"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">S001 - Bagas</h4>
-                                    <span class="font-weight-bold">Simpanan Wajib</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="feed-item">
-                            <a href="#">
-                                <div class="feeds-left"><i class="ik ik-info text-info"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">S002 - Gunawan</h4>
-                                    <span class="font-weight-bold">Simpanan Sukarela</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Penarikan</h3>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="ik ik-minus minimize-card"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-body feeds-widget">
-                        <div class="feed-item">
-                            <a href="pengajuan_simpanan.php">
-                                <div class="feeds-left"><i class="ik ik-info text-warning"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">PS01 - Bagas</h4>
-                                    <span class="font-weight-bold">Penarikan Simpanan</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="feed-item">
-                            <a href="#">
-                                <div class="feeds-left"><i class="ik ik-info text-warning"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">PS02 - Gunawan</h4>
-                                    <span class="font-weight-bold">Penarikan Simpanan</span>
-                                </div>
-                            </a>
+                        <div class="card-body feeds-widget">
+                            <div class="feed-item">
+                                <a href="#">
+                                    <div class="feeds-left"><i class="ik ik-info text-info"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">S001 - Bagas</h4>
+                                        <span class="font-weight-bold">Simpanan Wajib</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <div class="feeds-left"><i class="ik ik-info text-info"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">S002 - Gunawan</h4>
+                                        <span class="font-weight-bold">Simpanan Sukarela</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Pinjaman</h3>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="ik ik-minus minimize-card"></i></li>
-                            </ul>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Penarikan</h3>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="ik ik-minus minimize-card"></i></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body feeds-widget">
-                        <div class="feed-item">
-                            <a href="#">
-                                <div class="feeds-left"><i class="ik ik-info text-success"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">P001 - Bagas</h4>
-                                    <span class="font-weight-bold">Pinjaman Pendidikan</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="feed-item">
-                            <a href="#">
-                                <div class="feeds-left"><i class="ik ik-info text-success"></i></div>
-                                <div class="feeds-body">
-                                    <h4 class="title text-primary">P002 - Gunawan</h4>
-                                    <span class="font-weight-bold">Pinjaman Kesehatan</span>
-                                </div>
-                            </a>
+                        <div class="card-body feeds-widget">
+                            <div class="feed-item">
+                                <a href="pengajuan_simpanan.php">
+                                    <div class="feeds-left"><i class="ik ik-info text-warning"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">PS01 - Bagas</h4>
+                                        <span class="font-weight-bold">Penarikan Simpanan</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <div class="feeds-left"><i class="ik ik-info text-warning"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">PS02 - Gunawan</h4>
+                                        <span class="font-weight-bold">Penarikan Simpanan</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="col-lg-3">
-                <div class="widget">
-                    <div class="widget-header">
-                        <h3 class="widget-title">Chart</h3>
-                        <div class="widget-tools pull-right">
-                            <button type="button" class="btn btn-widget-tool minimize-widget ik ik-plus"></button>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pinjaman</h3>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="ik ik-minus minimize-card"></i></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="widget-body">
-                        <div id="c3-donut-chart"></div>
+                        <div class="card-body feeds-widget">
+                            <div class="feed-item">
+                                <a href="#">
+                                    <div class="feeds-left"><i class="ik ik-info text-success"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">P001 - Bagas</h4>
+                                        <span class="font-weight-bold">Pinjaman Pendidikan</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <div class="feeds-left"><i class="ik ik-info text-success"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-primary">P002 - Gunawan</h4>
+                                        <span class="font-weight-bold">Pinjaman Kesehatan</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div> -->
-        </div>
-        <div class="row clearfix">
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6>Jumlah Anggota</h6>
-                                <h4 class="text-info"><?= $dataAnggota['totalAnggota']; ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-user text-info"></i>
+            <div class="row clearfix mb-20 mt-20">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Jumlah Anggota</h6>
+                                    <h4 class="text-info"><?= $dataAnggota['totalAnggota']; ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-user text-info"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6>Total Tabungan</h6>
-                                <h4 class="text-primary"><?php if (isset($total_tabungan)) {
-                                                                echo rp($total_tabungan);
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Total Tabungan</h6>
+                                    <h4 class="text-primary"><?php if (isset($total_tabungan)) {
+                                                                    echo rp($total_tabungan);
+                                                                } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-thumbs-up text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Total Simpanan</h6>
+                                    <h4 class="text-warning"><?php if (isset($total_simpanan)) {
+                                                                    echo rp($total_simpanan + $total_pokok);
+                                                                } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="text-warning ik ik-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Total Penarikan</h6>
+                                    <h4 class="text-success"><?php if (isset($total_penarikan)) {
+                                                                    echo rp($total_penarikan);
+                                                                } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-message-square text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Total Pinjaman</h6>
+                                    <h4 class="text-danger"><?php if (isset($total_pinjaman)) {
+                                                                echo rp($total_pinjaman);
                                                             } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-thumbs-up text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6>Total Simpanan</h6>
-                                <h4 class="text-warning"><?php if (isset($total_simpanan)) {
-                                                                echo rp($total_simpanan + $total_pokok);
-                                                            } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="text-warning ik ik-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6>Total Penarikan</h6>
-                                <h4 class="text-success"><?php if (isset($total_penarikan)) {
-                                                                echo rp($total_penarikan);
-                                                            } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-message-square text-success"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6>Total Pinjaman</h6>
-                                <h4 class="text-danger"><?php if (isset($total_pinjaman)) {
-                                                            echo rp($total_pinjaman);
-                                                        } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-message-square text-danger"></i>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-message-square text-danger"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

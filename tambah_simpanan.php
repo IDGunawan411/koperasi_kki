@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card bg-form-tambah-simpanan">
                     <div class="card-body">
 
                         <div class="row clearfix">
@@ -35,6 +35,11 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card">
+                                        <div class="p-3 font-weight-bold bg-danger text-center">
+                                            <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                            <a class="h5 text-right text-white col-md-10">Pengajuan Simpanan</a>
+                                            <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                        </div>
                                         <div class="card-body shadow p-3 rounded">
                                             <?php
                                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -159,10 +164,6 @@
                                             $nextNoSimpanan = $text1 . sprintf('%04s', $nextNoUrut1);
 
                                             ?>
-                                            <div class="btn btn-md btn-danger btn-block" style="height: auto">
-                                                <i class="fa fa-lock fa-md"></i>
-                                                <span>Data Pribadi</span>
-                                            </div>
                                             <br>
                                             <div class="form-group row">
                                                 <label for="ID_Simpanan" class="col-sm-3 col-form-label text-right">ID Simpanan :</label>

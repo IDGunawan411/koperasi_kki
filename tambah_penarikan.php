@@ -31,7 +31,7 @@ function rp($angka)
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card bg-form-tambah-penarikan">
                             <div class="card-body">
                                 <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                     <div class="row clearfix">
@@ -48,6 +48,11 @@ function rp($angka)
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card">
+                                                <div class="p-3 font-weight-bold bg-primary text-center">
+                                                    <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                                    <a class="h5 text-right text-white col-md-10">Pengajuan Penarikan</a>
+                                                    <a class="text-left h5 text-white col-md-1"><i class="fa fa-lock fa-md"></i></a>
+                                                </div>
                                                 <div class="card-body shadow p-3 rounded">
                                                     <?php
                                                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -85,10 +90,6 @@ function rp($angka)
                                                     $nextNoUrut      = $lastNoUrut + 1;
                                                     $nextNoPenarikan = $today . sprintf('%04s', $nextNoUrut);
                                                     ?>
-                                                    <div class="btn btn-md btn-danger btn-block" style="height: auto">
-                                                        <i class="fa fa-lock fa-md"></i>
-                                                        <span>Data Pribadi</span>
-                                                    </div>
                                                     <br>
                                                     <!-- <div class="border p-2">
                                                         <?php
