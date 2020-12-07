@@ -355,7 +355,7 @@ $date->setTimeZone($timezone);
                 </div>
 
                 <div class="sidebar-content">
-                    <div class="nav-container">
+                    <div class="nav-container font-weight-bold">
                         <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                             <nav id="main-menu-navigation" class="navigation-main">
                                 <?php
@@ -401,19 +401,26 @@ $date->setTimeZone($timezone);
                                 } elseif ($menu == 'pengajuanPI') {
                                     $pinjaman       = "active open";
                                     $text_pinjaman  = "text-danger";
-                                    $pengajuanPI      = "active";
+                                    $pengajuanPI    = "active";
                                 } elseif ($menu == 'angsuran') {
                                     $angsuran         = "active";
                                     $text_angsuran    = "text-danger";
-                                } elseif ($menu == 'help') {
-                                    $help         = "active";
+                                } elseif ($menu == 'help_jasa') {
+                                    $help         = "active open";
                                     $text_help    = "text-danger";
+                                    $help_jasa    = "active";
+                                }elseif ($menu == 'help_guide') {
+                                    $help         = "active open";
+                                    $text_help    = "text-danger";
+                                    $help_guide   = "active";
                                 }
                                 ?>
-                                <div class="nav-lavel" style="">Navigation</div>
+                                <div class="nav-lavel" style="">Home</div>
                                 <div class="nav-item <?= $index; ?>">
                                     <a href="index.php" class="<?= $text_index; ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                 </div>
+                                <!-- Anggota -->
+                                <div class="nav-lavel">Anggota</div>
                                 <div class="nav-item has-sub <?= $anggota; ?>">
                                     <a href="javascript:void(0)" class="<?= $text_anggota; ?>"><i class="ik ik-layers"></i><span>Anggota</span></a>
                                     <div class="submenu-content">
@@ -423,34 +430,37 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
                                 <div class="nav-item has-sub <?= $simpanan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span></a>
                                     <div class="submenu-content">
                                         <a href="simpanan_wajib.php" class="menu-item <?= $wajib; ?>">Wajib</a>
                                         <a href="simpanan_sukarela.php" class="menu-item <?= $sukarela; ?>">Sukarela</a>
                                         <a href="pengajuan_simpanan.php" class="menu-item <?= $pengajuanS; ?>">Pengajuan Simpanan</a>
                                     </div>
                                 </div>
-
                                 <div class="nav-item has-sub <?= $penarikan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span></a>
                                     <div class="submenu-content">
                                         <a href="penarikan.php" class="menu-item <?= $penarikann; ?>">Penarikan</a>
                                         <a href="pengajuan_penarikan.php" class="menu-item <?= $pengajuanP; ?>">Pengajuan Penarikan</a>
                                     </div>
                                 </div>
-
+                                <!-- Peminjaman -->
                                 <div class="nav-lavel">Peminjaman</div>
-
                                 <div class="nav-item has-sub <?= $pinjaman; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span></a>
                                     <div class="submenu-content">
-
                                         <a href="pinjaman.php" class="menu-item <?= $pinjamann; ?>"><span>Pinjaman</span></a>
                                         <a href="pengajuan_pinjaman.php" class="menu-item <?= $pengajuanPI; ?>">Pengajuan Pinjaman</a>
                                     </div>
                                 </div>
-                                <div class="nav-item <?= $help; ?>">
-                                    <a href="help.php" class="<?= $text_help; ?>"><i class="ik ik-menu"></i><span>Help</span></a>
+                                <!-- Help -->
+                                <div class="nav-lavel">Help</div>
+                                <div class="nav-item has-sub <?= $help; ?>">
+                                    <a href="javascript:void(0)" class="<?= $text_help; ?>"><i class="ik ik-layers"></i><span>Help</span></a>
+                                    <div class="submenu-content">
+                                        <a href="help_jasa.php" class="menu-item <?= $help_jasa; ?>">Jasa Koperasi</a>
+                                        <a href="help_guide.php" class="menu-item <?= $help_guide; ?>">Panduan</a>
+                                    </div>
                                 </div>
                             </nav>
                         <?php } else { ?>
