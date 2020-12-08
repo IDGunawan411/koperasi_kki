@@ -120,7 +120,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Penarikan</td>
-                                        <td><?= tgl($ps['Tanggal_Entri']); ?></td>
+                                        <td><?= $ps['Tgl_Entri']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
@@ -146,7 +146,30 @@ function rp($angka)
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-12 invoice-col">
+                                                <address>
+                                                    <strong>ID Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['ID_Penarikan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Besar Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= rp($ps['Besar_Penarikan']); ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Entri</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['Tgl_Entri']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['Status_Penarikan']; ?></p>
+                                                </address>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

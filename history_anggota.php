@@ -99,7 +99,7 @@ function rp($angka)
                         <div style="overflow-x: auto;">
                             <table class=" table table-bordered display nowrap fixed" id="tabel-data" style="font-size: 16px;">
                                 <col width="50px">
-                                <col width="150px">
+                                <col width="300px">
                                 <col width="500px">
                                 <col width="130px">
                                 <col width="150px">

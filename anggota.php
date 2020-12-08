@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="fpdfcreate.php" target="_blank" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> CETAK</a>
+                        <!-- <a href="fpdfcreate.php" target="_blank" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> CETAK</a> -->
                         <div class="dt-responsive p-4">
                             <table class="table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
                                 <col width="50px">

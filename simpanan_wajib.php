@@ -139,7 +139,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Transaksi</td>
-                                        <td><?= tgl($w['Tanggal_Transaksi']); ?></td>
+                                        <td><?= $w['Tanggal_Transaksi']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
@@ -159,16 +159,43 @@ function rp($angka)
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">INFORMSASI SIMPANAN</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">INFORMSASI SIMPANAN WAJIB</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-12 invoice-col">
+                                                <address>
+                                                    <strong>ID Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['ID_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Jenis Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Jenis_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Transaksi</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Tanggal_Transaksi']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Saldo Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Saldo_Simpanan'] ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Status_Simpanan']; ?></p>
+                                                </address>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +207,7 @@ function rp($angka)
     </div>
 </div>
 
-<div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+<!-- <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -195,7 +222,7 @@ function rp($angka)
 
         </div>
     </div>
-</div>
+</div> -->
 
 <?php include 'footer.php'; ?>
 <script>
