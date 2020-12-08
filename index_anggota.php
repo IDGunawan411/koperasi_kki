@@ -19,12 +19,12 @@ function rp($angka)
     $total_tabungan  = $total_tb['tabungan'];
 
     $sql_pinjaman     = mysqli_query($konek, "SELECT SUM(Besar_Pinjaman) as pinjaman from pinjaman 
-                                        INNER JOIN anggota on anggota.ID_Anggota = pinjaman.ID_Anggota WHERE ID_User='$_SESSION[ID_User]'");
+                                        INNER JOIN anggota on anggota.ID_Anggota = pinjaman.ID_Anggota WHERE ID_User='$_SESSION[ID_User]' AND Status_Pinjaman='Konfimasi'");
     $total_pj        = mysqli_fetch_array($sql_pinjaman);
     $total_pinjaman  = $total_pj['pinjaman'];
 
     $sql_penarikan   = mysqli_query($konek, "SELECT SUM(Besar_Penarikan) as penarikan from penarikan 
-                                        INNER JOIN anggota on anggota.ID_Tabungan = penarikan.ID_Tabungan WHERE ID_User='$_SESSION[ID_User]'");
+                                        INNER JOIN anggota on anggota.ID_Tabungan = penarikan.ID_Tabungan WHERE ID_User='$_SESSION[ID_User]' AND Status_Penarikan='Konfirmasi'");
     $penarikan       = mysqli_fetch_array($sql_penarikan);
     $total_penarikan = $penarikan['penarikan'];
 
@@ -43,70 +43,72 @@ function rp($angka)
             <li class="breadcrumb-item no-drop active" style="margin-left: 10px">Dashboard</li>
             <li class="ml-auto active font-weight-bold">Dashboard</li>
         </ol>
-        <div class="row clearfix">
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget" style="margin-bottom:5px;">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6 class="text-primary">Total Tabungan</h6>
-                                <h4><?php if (isset($total_tabungan)) {
-                                        echo rp($total_tabungan);
-                                    } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-thumbs-up text-primary"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget" style="margin-bottom:5px;">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6 class="text-warning">Total Simpanan</h6>
-                                <h4><?php if (isset($total_pokok)) {
-                                        echo rp($total_simpanan + $total_pokok);
-                                    } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-calendar text-warning"></i>
+        <div class="card p-2 bg-form-dashboard">
+            <div class="row clearfix mt-50 mb-50">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget" style="margin-bottom:5px;">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6 class="text-primary">Total Tabungan</h6>
+                                    <h4><?php if (isset($total_tabungan)) {
+                                            echo rp($total_tabungan);
+                                        } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-thumbs-up text-primary"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget" style="margin-bottom:5px;">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6 class="text-success">Total Penarikan</h6>
-                                <h4><?php if (isset($total_penarikan)) {
-                                        echo rp($total_penarikan);
-                                    } ?></h4>
-                            </div>
-                            <div class="icon">
-                                <i class="ik ik-message-square text-success"></i>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget" style="margin-bottom:5px;">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6 class="text-warning">Total Simpanan</h6>
+                                    <h4><?php if (isset($total_pokok)) {
+                                            echo rp($total_simpanan + $total_pokok);
+                                        } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-calendar text-warning"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget" style="margin-bottom:5px;">
-                    <div class="widget-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="state">
-                                <h6 class="text-danger">Total Pinjaman</h6>
-                                <h4><?php if (isset($total_pinjaman)) {
-                                        echo rp($total_pinjaman);
-                                    } ?></h4>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget" style="margin-bottom:5px;">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6 class="text-success">Total Penarikan</h6>
+                                    <h4><?php if (isset($total_penarikan)) {
+                                            echo rp($total_penarikan);
+                                        } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-message-square text-success"></i>
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="ik ik-message-square text-danger"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget" style="margin-bottom:5px;">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6 class="text-danger">Total Pinjaman</h6>
+                                    <h4><?php if (isset($total_pinjaman)) {
+                                            echo rp($total_pinjaman);
+                                        } ?></h4>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-message-square text-danger"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

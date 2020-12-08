@@ -69,7 +69,7 @@ function rp($angka)
                                     <tbody>
                                         <?php $i = 1; ?>
                                         <?php
-                                        $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota)  ORDER BY ID_Pinjaman ASC");
+                                        $sql = mysqli_query($konek, "SELECT * FROM pinjaman INNER JOIN anggota USING(ID_Anggota) WHERE Status_Pinjaman='Konfirmasi' ORDER BY ID_Pinjaman ASC");
                                         while ($p = mysqli_fetch_array($sql)) {
                                             $color = "color:" . ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                         ?>
@@ -85,7 +85,7 @@ function rp($angka)
                                                 <td align="right"><?= rupiah($p["Besar_Angsuran"]); ?></td>
                                                 <td align="center"><?= $p["Status_Pinjaman"] ?></td>
                                                 <td>
-                                                    <a href="angsuran.php?act=tolak&ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Angsuran">
+                                                    <a href="angsuran.php?ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Angsuran">
                                                         <button class="btn btn-icon btn-outline-primary"><i class='fa fa-list'></i></button>
                                                     </a>
 
@@ -123,7 +123,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Pengajuan</td>
-                                        <td><?= tgl($p['Tanggal_Entri']); ?></td>
+                                        <td><?= $p['Tanggal_Entri']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>

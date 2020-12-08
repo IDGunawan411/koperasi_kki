@@ -64,7 +64,6 @@ $menu = "$help";
                                     }
                                     ?>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>

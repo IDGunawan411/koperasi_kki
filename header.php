@@ -466,13 +466,13 @@ $date->setTimeZone($timezone);
                                     $text_angsuran    = "text-danger";
                                 }
                                 ?>
-                                <div class="nav-lavel" style="">Navigation</div>
+                                <div class="nav-lavel" style="">Menu</div>
                                 <div class="nav-item <?= $index; ?>">
                                     <a href="index.php" class="<?= $text_index; ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                 </div>
 
                                 <div class="nav-item has-sub <?= $simpanan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span></a>
                                     <div class="submenu-content">
                                         <a href="simpanan_wajib.php" class="menu-item <?= $wajib; ?>">Wajib</a>
                                         <a href="simpanan_sukarela.php" class="menu-item <?= $sukarela; ?>">Sukarela</a>
@@ -482,7 +482,7 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
                                 <div class="nav-item has-sub <?= $penarikan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span></a>
                                     <div class="submenu-content">
                                         <a href="penarikan.php" class="menu-item <?= $penarikan; ?>">Penarikan</a>
                                         <?php if ($_SESSION['Level'] == 'Petugas') { ?>
@@ -494,7 +494,7 @@ $date->setTimeZone($timezone);
                                 <div class="nav-lavel">Peminjaman</div>
 
                                 <div class="nav-item has-sub <?= $pinjaman; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span> <span class="badge badge-danger">150+</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span></a>
                                     <div class="submenu-content">
 
                                         <a href="pinjaman.php" class="menu-item <?= $pinjamann; ?>"><span>Pinjaman</span></a>

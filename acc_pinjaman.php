@@ -42,11 +42,12 @@ if (isset($_GET['act'])) {
 
     if ($_GET['act'] == 'batal') {
         $ID_Pinjaman = $_GET['ID_Pinjaman'];
-
+        mysqli_query($konek, "DELETE FROM angsuran WHERE ID_Pinjaman='$ID_Pinjaman'");
 
         $update = mysqli_query($konek, "UPDATE pinjaman SET
                                             Status_Pinjaman='Menunggu'
                                             WHERE ID_Pinjaman='$ID_Pinjaman'");
+
 
         echo "<script>document.location.href = 'pengajuan_pinjaman.php';</script>";
     }

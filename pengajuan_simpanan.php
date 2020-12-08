@@ -54,7 +54,6 @@ function rp($angka)
                                         <th>Nama Anggota</th>
                                         <th>Tanggal Transaksi</th>
                                         <th>Saldo Simpanan</th>
-                                        <th>Gambar</th>
                                         <th>Status</th>
                                         <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                             <th>Aksi</th>
@@ -94,15 +93,35 @@ function rp($angka)
                                             <td width="200px"><?= $s["Nama_Anggota"]; ?></td>
                                             <td align="center"><?= $s["Tanggal_Transaksi"]; ?></td>
                                             <td align="right"><?= rupiah($s["Saldo_Simpanan"]); ?></td>
-                                            <td>
-                                                <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $s['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $s['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $s['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $s['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $s['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $s['Saldo_Simpanan']; ?>" data-gambar="<?= $s['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
-                                                    <img src="img/<?= $s['gambar']; ?>" width="80">
-                                                </a>
-                                            </td>
                                             <td align="right"><?= $s["Status_Simpanan"]; ?></td>
                                             <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                                 <td align="center">
                                                     <?php if ($s['Status_Simpanan'] == 'Menunggu') { ?>
+                                                        <a href="#" type="button" class="btn-sm" data-toggle="modal" data-target="#myModal1<?= $s['ID_Simpanan']; ?>"><button class="btn btn-icon btn-outline-success"><i class='fa fa-image'></i></button></a>
+                                                
+                                                        <div class="modal fade" id="myModal1<?= $s['ID_Simpanan']; ?>" role="dialog">
+                                                            <div class="modal-dialog modal-lg">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Bukti Pembayaran </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <?php
+                                                                            $id = $s['ID_Simpanan'];
+                                                                            $query_view = mysqli_query($konek, "SELECT * FROM Simpanan WHERE ID_Simpanan='$id'");
+                                                                            //$result = mysqli_query($conn, $query);
+                                                                            $data = mysqli_fetch_assoc($query_view) ?>
+                                                                        <img id="myImg" src="img/<?= $data['gambar'] ?>" alt="picture" width="100%">,
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <a href="acc_simpanan.php?act=acc_simpanan&ID_Simpanan=<?= $s['ID_Simpanan'] ?>&Saldo_Simpanan=<?= $s['Saldo_Simpanan'] ?>&ID_Tabungan=<?= $s['ID_Tabungan'] ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi"><button class="btn btn-icon btn-outline-primary"><i class='fa fa-check'></i></button></a> |
                                                         <a href="hapus_simpanan.php?ID_Simpanan=<?= $s['ID_Simpanan'] ?>&gambar=<?= $s['gambar']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus" class="btn-del"><button class="btn btn-icon btn-outline-danger"><i class='fa fa-trash'></i></button></a>
                                                     <?php } else { ?>
@@ -132,21 +151,6 @@ function rp($angka)
 
     </div>
 </div>
-<div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editLayoutItemLabel">Sed id mi non quam iaculis pulvinar.</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="col-md-12">
-                <img class="img-fluid" id="gambar" width="900" height="600">
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <?php include 'footer.php'; ?>
 <script>
     // Gambar

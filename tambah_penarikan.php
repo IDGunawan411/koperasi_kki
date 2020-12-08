@@ -62,22 +62,33 @@ function rp($angka)
                                                         $besarPenarikan     = $_POST['Besar_Penarikan'];
                                                         $tglEntri           = $_POST['Tgl_Entri'];
 
+                                                        
+                                                        $qt = mysqli_query($konek, "SELECT * FROM tabungan WHERE ID_Tabungan='$idTabungan'");
+                                                        $dt = mysqli_fetch_array($qt);
+                                                        $qp = mysqli_query($konek, "SELECT * FROM penarikan WHERE ID_Tabungan='$idTabungan' AND Status_Penarikan='Menunggu'");
+                                                        $dp = mysqli_fetch_array($qp);
+                                                        // echo $dt['Besar_Tabungan'];
+
                                                         if ($idTabungan == '' | $besarPenarikan == '' | $tglEntri == '' | $idPenarikan == '') {
                                                             echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
-                                                        Data Belum lengkap !!!
-                                                        </div>";
-                                                        } else {
-                                                            //simpan data penarikan
+                                                                Data Belum lengkap !!!
+                                                                </div>";
+                                                        }else {
+                                                            if($dp['ID_Penarikan']==!null){
+                                                                echo "<div class='alert alert-primary fade show alert-dismissible mt-2'>
+                                                                            Data penarikan lain blm di setujui ! 
+                                                                        </div>";
+                                                            }elseif($dt['Besar_Tabungan'] < $besarPenarikan) {
+                                                                echo "<div class='alert alert-info fade show alert-dismissible mt-2'>
+                                                                        Tabungan Tidak Mencukupi !!!
+                                                                    </div>";
+                                                            }else{
+                                                            // simpan data penarikan
                                                             $simpan = mysqli_query(
                                                                 $konek,
                                                                 "INSERT INTO `penarikan` (`ID_Penarikan`, `ID_Tabungan`, `Besar_Penarikan`, `Tgl_Entri`, `Status_Penarikan`)
-                                                        VALUES ('$idPenarikan', '$idTabungan', '$besarPenarikan', '$tglEntri', 'Menunggu')"
-                                                            );
-
-                                                            if ($_SESSION['Level'] == 'Petugas') {
+                                                                VALUES ('$idPenarikan', '$idTabungan', '$besarPenarikan', '$tglEntri', 'Menunggu')");
                                                                 echo "<script>document.location.href = 'pengajuan_penarikan.php';</script>";
-                                                            } else {
-                                                                echo "<script>document.location.href = 'penarikan.php';</script>";
                                                             }
                                                         }
                                                     }
@@ -115,12 +126,11 @@ function rp($angka)
                                                                     <select name="ID_Tabungan" class="form-control" id="tabungan_anggota">
                                                                         <option selected value="0" readonly>-- Pilih Tabungan --</option>
                                                                         <?php
-
-                                                                        $arraytotal = [];
                                                                         $sql_a = mysqli_query($konek, "SELECT * FROM tabungan INNER JOIN anggota on anggota.ID_Tabungan = tabungan.ID_Tabungan");
                                                                         while ($a = mysqli_fetch_array($sql_a)) {
                                                                         ?>
-                                                                            <option value="<?= $a['ID_Tabungan'] ?>"><?= $a['Nama_Anggota'] . " - " . $a['ID_Tabungan'] ?></option>
+                                                                            <option value="<?= $a['ID_Tabungan'] ?>" <?php if(isset($idTabungan)){if($a['ID_Tabungan']==$idTabungan){echo "selected";}} ?>>
+                                                                            <?= $a['Nama_Anggota'] . " - " . $a['ID_Tabungan'] ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
@@ -144,13 +154,18 @@ function rp($angka)
 
                                                             <div class="md-form mt-0">
                                                                 <div class="form-group row">
-                                                                    <div class="col-sm-8">
-                                                                        <input type="number" class="form-control text-right" id="Besar_Penarikan" placeholder="0.00" name="Besar_Penarikan" required>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="number" value="<?php if(isset($besarPenarikan)){echo $besarPenarikan;} ?>" 
+                                                                        class="form-control text-right" id="Besar_Penarikan" placeholder="0.00" name="Besar_Penarikan" required>
                                                                         <div class="valid-feedback">Valid.</div>
+                                                                        <?php
+                                                                        if($_SESSION['Level']=='Anggota'){
+                                                                            $tb=mysqli_query($konek,"SELECT * FROM tabungan WHERE ID_Tabungan = '$da[ID_Tabungan]'");
+                                                                            $dtb=mysqli_fetch_array($tb);
+                                                                        ?>
+                                                                        <div class="p-2 border shadow-sm mt-2">Total Tabungan  : <?= rp($dtb['Besar_Tabungan']);?> </div>
+                                                                        <?php } ?>
                                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
-                                                                    </div>
-                                                                    <div class="col-sm-4">
-                                                                        <p class="text-danger">asdasdas</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -159,11 +174,9 @@ function rp($angka)
 
                                                     <div class="form-group row">
                                                         <label for="Tgl_Entri" class="col-sm-3 col-form-label text-right">Tanggal Penarikan :</label>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-5">
                                                             <div class="md-form mt-0">
                                                                 <input type="text" value="<?= $date->format('d F Y, H:i:s A'); ?>" class="form-control text-left" id="Tgl_Entri" placeholder="0.00" name="Tgl_Entri" required readonly>
-                                                                <div class="valid-feedback">Valid.</div>
-                                                                <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                             </div>
                                                         </div>
                                                     </div>

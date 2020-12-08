@@ -1,4 +1,4 @@
-<?php $menu = 'angsuran'; ?>
+<?php $menu = 'pinjaman'; ?>
 <?php include 'header.php'; ?>
 
 <?php
@@ -145,15 +145,20 @@ function rp($angka)
                                         } else {
                                             $keterangan = "text-primary";
                                         }
+                                        if($a['Tgl_Entri']==null){
+                                            $tgl_konfirmasi = "";
+                                        }else{
+                                            $tgl_konfirmasi = tgl($a['Tgl_Entri']);
+                                        }
                                     ?>
                                         <tr class="<?= $keterangan ?>">
                                             <td align="center"><?= $a['ID_Angsuran'] ?></td>
                                             <td align="center"><?= $a['Angsuran'] ?></td>
                                             <td align="right"><?= rupiah($a['Besar_Angsuran']) ?></td>
-                                            <td align="center"><?= $a['Jatuh_Tempo'] ?></td>
-                                            <td align="center"><?= $a['Tgl_Entri'] ?></td>
+                                            <td align="center"><?= tgl($a['Jatuh_Tempo']) ?></td>
+                                            <td align="center"><?= $tgl_konfirmasi; ?></td>
                                             <td align="right"><?= $a['Denda'] ?></td>
-                                            <td align="center"><?= $telatDenda; ?></td>
+                                            <td align="center"><? $telatDenda; ?></td>
                                             <td align="center"><?= $a['Status_Angsuran'] ?></td>
                                             <td align="center">
                                                 <a href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi">

@@ -32,3 +32,10 @@
     background-size: 40%;
     /* background-position: center; */
 }
+
+/* Background form help */
+.bg-form-help-tambah{
+    background-image: url("../img/form/form-help.jpg");
+    background-size: 50%;
+    /* background-position: center; */
+}

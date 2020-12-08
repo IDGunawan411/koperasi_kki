@@ -87,8 +87,30 @@ function rp($angka)
                                                 <td align="right"><?= $w["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
-                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $w['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $w['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $w['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $w['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $w['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $w['Saldo_Simpanan']; ?>" data-gambar="<?= $w['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
-                                                        <img src="img/<?= $w['gambar']; ?>" width="80">
+                                                <a href="#" type="button" class="btn-sm" data-toggle="modal" data-target="#myModal1<?= $w['ID_Simpanan']; ?>"><button class="btn btn-icon btn-outline-success"><i class='fa fa-image'></i></button></a>
+                                                    
+                                                    <div class="modal fade" id="myModal1<?= $w['ID_Simpanan']; ?>" role="dialog">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Bukti Pembayaran </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <?php
+                                                                        $id = $w['ID_Simpanan'];
+                                                                        $query_view = mysqli_query($konek, "SELECT * FROM Simpanan WHERE ID_Simpanan='$id'");
+                                                                        //$result = mysqli_query($conn, $query);
+                                                                        $data = mysqli_fetch_assoc($query_view) ?>
+                                                                    <img id="myImg" src="img/<?= $data['gambar'] ?>" alt="picture" width="100%">,
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td align="center"><?= $w["Status_Simpanan"]; ?></td>
                                             </tr>
@@ -135,7 +157,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Transaksi</td>
-                                        <td><?= tgl($w['Tanggal_Transaksi']); ?></td>
+                                        <td><?= $w['Tanggal_Transaksi']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
@@ -192,7 +214,6 @@ function rp($angka)
         </div>
     </div>
 </div>
-
 <?php include 'footer.php'; ?>
 <script>
     $(document).ready(function() {

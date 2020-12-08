@@ -120,7 +120,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Penarikan</td>
-                                        <td><?= tgl($ps['Tanggal_Entri']); ?></td>
+                                        <td><?= $ps['Tanggal_Entri']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
