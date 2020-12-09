@@ -56,14 +56,18 @@
 
                                                     $idPinjaman         = $_POST['ID_Pinjaman'];
                                                     $idAnggota          = $_POST['ID_Anggota'];
-                                                    $namaPinjaman       = $_POST['Nama_Pinjaman'];
+                                                    
+                                                    // Pecah Bunga-NamaPinjaman
+                                                    $nama_pj            = $_POST['Nama_Pinjaman'];
+                                                    $ex_pj              = explode("-",$nama_pj);
+                                                    $namaPinjaman       = $ex_pj[1];
+
                                                     $besarPinjaman      = $_POST['Besar_Pinjaman'];
                                                     $besarAngsuran      = $_POST['Besar_Angsuran'];
                                                     $lamaAngsuran       = $_POST['Lama_Angsuran'];
                                                     $bunga              = $_POST['Bunga'];
                                                     $tglEntri           = $_POST['Tgl_Entri'];
                                                     $jatuhTempo         = $_POST['Jatuh_Tempo'];
-
                                                     if ($idAnggota == '' | $namaPinjaman == '' | $besarPinjaman == '' | $besarAngsuran == '' | $lamaAngsuran == '' | $bunga == '' | $tglEntri == ''  | $jatuhTempo == '') {
                                                         echo "<div class='alert alert-warning fade show alert-dismissible mt-2'>
                                                         Data Belum lengkap !!!
@@ -144,7 +148,7 @@
                                                         <label for="ID_Anggota" class="col-sm-3 col-form-label text-right">Anggota :</label>
                                                         <div class="col-sm-7">
                                                             <div class="md-form mt-0">
-                                                                <select name="ID_Anggota" class="form-control" id="exampleSelectGender">
+                                                                <select name="ID_Anggota" class="form-control">
                                                                     <option selected value="0" readonly>-- Pilih Anggota --</option>
                                                                     <?php
                                                                     $sql_a = mysqli_query($konek, "SELECT * FROM anggota");
@@ -167,27 +171,22 @@
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-
-
                                                 <div class="form-group row">
                                                     <label for="Nama_Pinjaman" class="col-sm-3 col-form-label text-right">Jenis Pinjaman :</label>
                                                     <div class="col-sm-7">
                                                         <div class="md-form mt-0">
-                                                            <select name="Nama_Pinjaman" class="form-control" id="exampleSelectGender">
+                                                            <select name="Nama_Pinjaman" class="form-control" onchange="myFunction(event)">
                                                                 <option selected disabled>-- Pilih Jenis Pinjaman --</option>
                                                                 <?php
                                                                 $sql_jp = mysqli_query($konek, "SELECT * FROM Jenis_Pinjaman");
                                                                 while ($djp = mysqli_fetch_array($sql_jp)) {
                                                                 ?>
-                                                                    <option value="<?= $djp['Nama_Pinjaman'] ?>"><?= $djp['Nama_Pinjaman'] ?></option>
+                                                                    <option value="<?= $djp['Bunga']."-".$djp['Nama_Pinjaman'] ?>"><?= $djp['Nama_Pinjaman'] ?></option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
                                                 <div class="form-group row">
                                                     <label for="Besar_Pinjaman" class="col-sm-3 col-form-label text-right">Besar Pinjaman :</label>
                                                     <div class="col-sm-7">
@@ -198,12 +197,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group row">
                                                     <label for="Lama_Angsuran" class="col-sm-3 col-form-label text-right">Lama Angsuran :</label>
                                                     <div class="col-sm-7">
                                                         <div class="md-form mt-0">
-                                                            <input type="text" class="form-control text-right" id="Lama_Angsuran" placeholder="0" name="Lama_Angsuran" required>
+                                                            <input type="text" class="form-control text-right" id="Lama_Angsuran" placeholder="0x" name="Lama_Angsuran" required>
                                                             <div class="valid-feedback">Valid.</div>
                                                             <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                         </div>
@@ -214,7 +212,7 @@
                                                     <label for="Bunga" class="col-sm-3 col-form-label text-right">Bunga :</label>
                                                     <div class="col-sm-7">
                                                         <div class="md-form mt-0">
-                                                            <input type="text" class="form-control text-right" id="Bunga" placeholder="0.00%" name="Bunga" required>
+                                                            <input type="text" class="form-control text-right" id="Bunga" placeholder="0.00%" name="Bunga" readonly>
                                                             <div class="valid-feedback">Valid.</div>
                                                             <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                         </div>
@@ -225,7 +223,7 @@
                                                     <label for="Besar_Angsuran" class="col-sm-3 col-form-label text-right">Besar Angsuran :</label>
                                                     <div class="col-sm-7">
                                                         <div class="md-form mt-0">
-                                                            <input type="text" class="form-control text-right" id="Besar_Angsuran" placeholder="0.00" name="Besar_Angsuran" required>
+                                                            <input type="text" class="form-control text-right" id="Besar_Angsuran" placeholder="0.00" name="Besar_Angsuran" readonly>
                                                             <div class="valid-feedback">Valid.</div>
                                                             <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                         </div>
@@ -256,6 +254,12 @@
 
 <?php include 'footer.php'; ?>
 <script>
+    function myFunction(pj) {
+        var jenis_pinjaman = pj.target.value
+        var ex = jenis_pinjaman.split("-");
+        document.getElementById("Bunga").value = ex[0];
+    }   
+
     $(document).ready(function() {
         function hitung() {
             var BPinjaman = $('#Besar_Pinjaman').val();

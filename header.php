@@ -280,7 +280,11 @@ $date->setTimeZone($timezone);
 
                         <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
+                        <?php
+                        $dtfoto = mysqli_query($konek, "SELECT * FROM user INNER JOIN gambar USING(ID_User) WHERE user.ID_User='$_SESSION[ID_User]'");
+                        $df     = mysqli_fetch_array($dtfoto);
+                        ?>
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/<?= $df['Profil_Image']; ?>" alt=""></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="profil.php"><i class="ik ik-user dropdown-icon"></i> Profile</a>
                                 <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Settings</a>
@@ -375,7 +379,7 @@ $date->setTimeZone($timezone);
                                 <!-- Anggota -->
                                 <div class="nav-lavel">Anggota</div>
                                 <div class="nav-item has-sub <?= $anggota; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_anggota; ?>"><i class="ik ik-layers"></i><span>Anggota</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_anggota; ?>"><i class="fas fa-id-card"></i><span>Anggota</span></a>
                                     <div class="submenu-content">
                                         <a href="syarat_anggota.php" class="menu-item <?= $form_pend; ?>">Syarat Pendaftaran</a>
                                         <a href="anggota.php" class="menu-item <?= $data_anggota; ?>">Anggota</a>
@@ -383,7 +387,7 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
                                 <div class="nav-item has-sub <?= $simpanan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="fas fa-wallet"></i><span>Simpanan</span></a>
                                     <div class="submenu-content">
                                         <a href="simpanan_wajib.php" class="menu-item <?= $wajib; ?>">Wajib</a>
                                         <a href="simpanan_sukarela.php" class="menu-item <?= $sukarela; ?>">Sukarela</a>
@@ -391,7 +395,7 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
                                 <div class="nav-item has-sub <?= $penarikan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="fas fa-money-check"></i><span>Penarikan</span></a>
                                     <div class="submenu-content">
                                         <a href="penarikan.php" class="menu-item <?= $penarikann; ?>">Penarikan</a>
                                         <a href="pengajuan_penarikan.php" class="menu-item <?= $pengajuanP; ?>">Pengajuan Penarikan</a>
@@ -400,7 +404,7 @@ $date->setTimeZone($timezone);
                                 <!-- Peminjaman -->
                                 <div class="nav-lavel">Peminjaman</div>
                                 <div class="nav-item has-sub <?= $pinjaman; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="fas fa-credit-card"></i><span>Pinjaman</span></a>
                                     <div class="submenu-content">
                                         <a href="pinjaman.php" class="menu-item <?= $pinjamann; ?>"><span>Pinjaman</span></a>
                                         <a href="pengajuan_pinjaman.php" class="menu-item <?= $pengajuanPI; ?>">Pengajuan Pinjaman</a>
@@ -409,7 +413,7 @@ $date->setTimeZone($timezone);
                                 <!-- Help -->
                                 <div class="nav-lavel">Help</div>
                                 <div class="nav-item has-sub <?= $help; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_help; ?>"><i class="ik ik-layers"></i><span>Help</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_help; ?>"><i class="fas fa-question-circle"></i><span>Help</span></a>
                                     <div class="submenu-content">
                                         <a href="help_jasa.php" class="menu-item <?= $help_jasa; ?>">Jasa Koperasi</a>
                                         <a href="help_guide.php" class="menu-item <?= $help_guide; ?>">Panduan</a>
@@ -423,48 +427,48 @@ $date->setTimeZone($timezone);
                             ?>
                             <nav id="main-menu-navigation" class="navigation-main">
                                 <?php
-                                if ($menu == 'index') {
-                                    $index        = "active";
-                                    $text_index   = "text-danger";
-                                } elseif ($menu == 'tabungan') {
-                                    $anggota      = "active open";
-                                    $text_anggota = "text-danger";
-                                    $tabungan     = "active";
-                                } elseif ($menu == 'wajib') {
-                                    $simpanan  = "active open";
-                                    $text_simpanan  = "text-danger";
-                                    $wajib = "active";
-                                } elseif ($menu == 'sukarela') {
-                                    $simpanan  = "active open";
-                                    $text_simpanan  = "text-danger";
-                                    $sukarela  = "active";
-                                } elseif ($menu == 'pengajuanS') {
-                                    $simpanan  = "active open";
-                                    $text_simpanan  = "text-danger";
-                                    $pengajuanS  = "active";
-                                } elseif ($menu == 'penarikan') {
-                                    $penarikan       = "active open";
-                                    $text_penarikan  = "text-danger";
-                                    $penarikan      = "active";
-                                } elseif ($menu == 'pengajuanP') {
-                                    $penarikan       = "active open";
-                                    $text_penarikan  = "text-danger";
-                                    $pengajuanP      = "active";
-                                } elseif ($menu == 'pinjaman') {
-                                    $pinjaman       = "active open";
-                                    $text_pinjaman  = "text-danger";
-                                    $pinjamann      = "active";
-                                } elseif ($menu == 'pengajuanPI') {
-                                    $pinjaman       = "active open";
-                                    $text_pinjaman  = "text-danger";
-                                    $pengajuanPI      = "active";
-                                } elseif ($menu == 'help') {
-                                    $help         = "active";
-                                    $text_help    = "text-danger";
-                                } elseif ($menu == 'angsuran') {
-                                    $angsuran         = "active";
-                                    $text_angsuran    = "text-danger";
-                                }
+                                    if ($menu == 'index') {
+                                        $index        = "active";
+                                        $text_index   = "text-danger";
+                                    } elseif ($menu == 'tabungan') {
+                                        $anggota      = "active open";
+                                        $text_anggota = "text-danger";
+                                        $tabungan     = "active";
+                                    } elseif ($menu == 'wajib') {
+                                        $simpanan  = "active open";
+                                        $text_simpanan  = "text-danger";
+                                        $wajib = "active";
+                                    } elseif ($menu == 'sukarela') {
+                                        $simpanan  = "active open";
+                                        $text_simpanan  = "text-danger";
+                                        $sukarela  = "active";
+                                    } elseif ($menu == 'pengajuanS') {
+                                        $simpanan  = "active open";
+                                        $text_simpanan  = "text-danger";
+                                        $pengajuanS  = "active";
+                                    } elseif ($menu == 'penarikan') {
+                                        $penarikan       = "active open";
+                                        $text_penarikan  = "text-danger";
+                                        $penarikan      = "active";
+                                    } elseif ($menu == 'pengajuanP') {
+                                        $penarikan       = "active open";
+                                        $text_penarikan  = "text-danger";
+                                        $pengajuanP      = "active";
+                                    } elseif ($menu == 'pinjaman') {
+                                        $pinjaman       = "active open";
+                                        $text_pinjaman  = "text-danger";
+                                        $pinjamann      = "active";
+                                    } elseif ($menu == 'pengajuanPI') {
+                                        $pinjaman       = "active open";
+                                        $text_pinjaman  = "text-danger";
+                                        $pengajuanPI      = "active";
+                                    } elseif ($menu == 'help') {
+                                        $help         = "active";
+                                        $text_help    = "text-danger";
+                                    } elseif ($menu == 'angsuran') {
+                                        $angsuran         = "active";
+                                        $text_angsuran    = "text-danger";
+                                    }
                                 ?>
                                 <div class="nav-lavel" style="">Menu</div>
                                 <div class="nav-item <?= $index; ?>">
@@ -472,7 +476,7 @@ $date->setTimeZone($timezone);
                                 </div>
 
                                 <div class="nav-item has-sub <?= $simpanan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="ik ik-layers"></i><span>Simpanan</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_simpanan; ?>"><i class="fas fa-wallet"></i><span>Simpanan</span></a>
                                     <div class="submenu-content">
                                         <a href="simpanan_wajib.php" class="menu-item <?= $wajib; ?>">Wajib</a>
                                         <a href="simpanan_sukarela.php" class="menu-item <?= $sukarela; ?>">Sukarela</a>
@@ -482,7 +486,7 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
                                 <div class="nav-item has-sub <?= $penarikan; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="ik ik-layers"></i><span>Penarikan</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_penarikan; ?>"><i class="fas fa-money-check"></i><span>Penarikan</span></a>
                                     <div class="submenu-content">
                                         <a href="penarikan.php" class="menu-item <?= $penarikan; ?>">Penarikan</a>
                                         <?php if ($_SESSION['Level'] == 'Petugas') { ?>
@@ -494,7 +498,7 @@ $date->setTimeZone($timezone);
                                 <div class="nav-lavel">Peminjaman</div>
 
                                 <div class="nav-item has-sub <?= $pinjaman; ?>">
-                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="ik ik-layers"></i><span>Pinjaman</span></a>
+                                    <a href="javascript:void(0)" class="<?= $text_pinjaman; ?>"><i class="fas fa-credit-card"></i><span>Pinjaman</span></a>
                                     <div class="submenu-content">
 
                                         <a href="pinjaman.php" class="menu-item <?= $pinjamann; ?>"><span>Pinjaman</span></a>
@@ -504,8 +508,14 @@ $date->setTimeZone($timezone);
                                     </div>
                                 </div>
 
-                                <div class="nav-item <?= $help; ?>">
-                                    <a href="help.php" class="<?= $text_help; ?>"><i class="ik ik-menu"></i><span>Help</span></a>
+                                <!-- Help -->
+                                <div class="nav-lavel">Help</div>
+                                <div class="nav-item has-sub <?= $help; ?>">
+                                    <a href="javascript:void(0)" class="<?= $text_help; ?>"><i class="fas fa-question-circle"></i><span>Help</span></a>
+                                    <div class="submenu-content">
+                                        <a href="help_jasa.php" class="menu-item <?= $help_jasa; ?>">Jasa Koperasi</a>
+                                        <a href="help_guide.php" class="menu-item <?= $help_guide; ?>">Panduan</a>
+                                    </div>
                                 </div>
                             </nav>
 

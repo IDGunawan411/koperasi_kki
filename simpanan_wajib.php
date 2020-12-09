@@ -68,7 +68,8 @@ function rp($angka)
                                         <?php
                                         $i = 1;
                                         $query = "SELECT * FROM simpanan INNER JOIN anggota 
-                                        on anggota.ID_Tabungan = simpanan.ID_Tabungan WHERE Jenis_Simpanan='Simpanan Wajib'";
+                                        on anggota.ID_Tabungan = simpanan.ID_Tabungan WHERE Jenis_Simpanan='Simpanan Wajib' 
+                                        AND Status_Simpanan='Konfirmasi'";
 
                                         $sql_total  = mysqli_query($konek, "SELECT SUM(Saldo_Simpanan) as Total_Wajib FROM simpanan 
                                         INNER JOIN anggota on anggota.ID_Tabungan = simpanan.ID_Tabungan WHERE Jenis_Simpanan='Simpanan Wajib'");
@@ -153,7 +154,7 @@ function rp($angka)
                                 <h3 class="widget-title h5 font-weight-bold">- <?= $w['ID_Simpanan'] ?> -</h3>
                                 <div class="widget-tools pull-right">
                                     <!-- Modal Info Simpanan -->
-                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal"></button></a>
+                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal<?= $w['ID_Simpanan'] ?>"></button></a>
                                     <button type="button" class="btn btn-sm btn-widget-tool minimize-widget text-white ik ik-minus"></button>
                                 </div>
                             </div>
@@ -178,7 +179,7 @@ function rp($angka)
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal<?= $w['ID_Simpanan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -187,8 +188,40 @@ function rp($angka)
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    <?php
+                                    $id = $w['ID_Simpanan'];
+                                    $gid=mysqli_query($konek, "SELECT * FROM simpanan WHERE ID_Simpanan='$id'");
+                                    $g=mysqli_fetch_array($gid);
+                                    ?>
                                     <div class="modal-body">
-                                        ...
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-12 invoice-col">
+                                                <address>
+                                                    <strong>ID Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $g['ID_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $g['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Jenis Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $g['Jenis_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Transaksi</strong><br>
+                                                    <p class="text-danger h5"><?= $g['Tanggal_Transaksi']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Saldo Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= rp($g['Saldo_Simpanan']) ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $g['Status_Simpanan']; ?></p>
+                                                </address>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

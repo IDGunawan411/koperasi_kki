@@ -48,7 +48,9 @@ function rp($angka)
                             <ul class="list-unstyled card-option">
                                 <li><i class="ik ik-chevron-left action-toggle" data-toggle="tooltip" data-placement="top" title="Geser"></i></li>
                                 <li><i class="ik ik-minus minimize-card" data-toggle="tooltip" data-placement="top" title="Minimize"></i></li>
-                                <li><a href="help_info.php?Konfigurasi=Panduan"><i class="ik ik-info" data-toggle="tooltip" data-placement="top" title="Information"></i></a></li>
+                                <?php if($_SESSION['Level']=='Petugas'){?>
+                                    <li><a href="help_info.php?Konfigurasi=Panduan"><i class="ik ik-info" data-toggle="tooltip" data-placement="top" title="Information"></i></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>

@@ -74,7 +74,7 @@ function rp($angka)
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = mysqli_query($konek, "SELECT * FROM penarikan INNER JOIN anggota USING(ID_Tabungan)");
+                                        $sql = mysqli_query($konek, "SELECT * FROM penarikan INNER JOIN anggota USING(ID_Tabungan) WHERE Status_Penarikan='Konfirmasi'");
                                         while ($ps = mysqli_fetch_array($sql)) {
                                             $color = "color:" . ($ps['Status_Penarikan'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                         ?>
@@ -111,7 +111,7 @@ function rp($angka)
                                 <h3 class="widget-title h5 font-weight-bold">- <?= $ps['ID_Penarikan'] ?> -</h3>
                                 <div class="widget-tools pull-right">
                                     <!-- Modal Info Penarikan -->
-                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal"></button></a>
+                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal<?= $ps['ID_Penarikan'] ?>"></button></a>
                                     <button type="button" class="btn btn-sm btn-widget-tool minimize-widget text-white ik ik-minus"></button>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Penarikan</td>
-                                        <td><?= $ps['Tanggal_Entri']; ?></td>
+                                        <td><?= $ps['Tgl_Entri']; ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
@@ -136,7 +136,7 @@ function rp($angka)
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal<?= $ps['ID_Penarikan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -145,8 +145,36 @@ function rp($angka)
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    <?php
+                                        $id = $ps['ID_Penarikan'];
+                                        $gid=mysqli_query($konek, "SELECT * FROM penarikan WHERE ID_Penarikan='$id'");
+                                        $g=mysqli_fetch_array($gid);
+                                    ?>
                                     <div class="modal-body">
-                                        ...
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-12 invoice-col">
+                                                <address>
+                                                    <strong>ID Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['ID_Penarikan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Besar Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= rp($ps['Besar_Penarikan']); ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Entri</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['Tgl_Entri']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Penarikan</strong><br>
+                                                    <p class="text-danger h5"><?= $ps['Status_Penarikan']; ?></p>
+                                                </address>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -56,8 +56,8 @@ $menu = "$help";
                                             <td align="center"><?= $dk["Isi_Konfigurasi"]; ?></td>
                                             <td align="center" width="100px"><?= tgl($dk["Tanggal_Ubah"]); ?></td>
                                             <td>
-                                                <a href="edit_konfigurasi.php?ID_Konfigurasi=<?= $dk['ID_Konfigurasi']; ?>"><i class="h5 ik ik-edit text-primary"></i></a>
-                                                <a href="hapus_konfigurasi.php?ID_Konfigurasi=<?= $dk['ID_Konfigurasi']; ?>"><i class="h5 fas fa-times text-danger"></i></a>
+                                                <a href="help_edit.php?ID_Konfigurasi=<?= $dk['ID_Konfigurasi']; ?>&Konfigurasi=<?= $_GET['Konfigurasi'] ?>"><i class="h5 ik ik-edit text-primary"></i></a>
+                                                <a href="help_hapus.php?ID_Konfigurasi=<?= $dk['ID_Konfigurasi']; ?>&Konfigurasi=<?= $_GET['Konfigurasi'] ?>"><i class="h5 fas fa-times text-danger"></i></a>
                                             </td>
                                         </tr>
                                     <?php

@@ -76,10 +76,9 @@
                                                     mysqli_query($konek, "INSERT INTO `tabungan` (`ID_Tabungan`, `ID_Anggota`, `Tgl_Mulai`, `Besar_Tabungan`)
                                             VALUES ('$idTabungan', '$idAnggota', '$tanggalEntri', '$simpananPokok');");
 
-                                                    //simpan data history
-                                                    mysqli_query($konek, "INSERT INTO `history` (`ID_History`, `ID_Tabungan`, `Jenis_History`, `Jumlah_History`, `Saldo_Terakhir`, `Waktu_History`)
-                                            VALUES (NULL, '$idTabungan', 'Simpanan Pokok', '$simpananPokok', '$simpananPokok', '$tanggalEntri');");
-
+                                                    //simpan data gambar
+                                                    mysqli_query($konek, "INSERT INTO gambar (ID_Gambar ,Profil_Image, ID_User) VALUES (null,'','$idUser')");
+                                                
                                                     //simpan data user
                                                     mysqli_query($konek, "INSERT INTO `user` (`ID_User`, `Username`, `Password`, `Nama_Lengkap`, `Email`, `Level`)
                                             VALUES ('$idUser', '$username', '$password', '$namaAnggota', '$email', '$level');");
@@ -345,7 +344,7 @@
                                                 <label for="Level" class="col-sm-3 col-form-label text-right">Level :</label>
                                                 <div class="col-sm-8">
                                                     <div class="md-form mt-0">
-                                                        <input type="text" class="form-control" id="Level" placeholder="Masukan Nama Lengkap" name="Level" required>
+                                                        <input type="text" class="form-control" value="Anggota" readonly id="Level" placeholder="Masukan Nama Lengkap" name="Level" required>
                                                         <div class="valid-feedback">Valid.</div>
                                                         <div class="invalid-feedback">Harap isi kolom ini.</div>
                                                     </div>

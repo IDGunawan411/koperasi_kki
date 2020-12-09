@@ -47,9 +47,9 @@ $menu = "$help";
                                                 );
 
                                                 if ($jenisPanduan=='Simpanan' || $jenisPanduan=='Pinjaman') {
-                                                    echo "<script>document.location.href = 'help_jasa.php';</script>";
+                                                    echo "<script>document.location.href = 'help_jasa.php?Konfigurasi=$_GET[Konfigurasi]';</script>";
                                                 } else {
-                                                    echo "<script>document.location.href = 'help_guide.php';</script>";
+                                                    echo "<script>document.location.href = 'help_guide.php?Konfigurasi=$_GET[Konfigurasi]';</script>";
                                                 }
                                             }
                                         ?>

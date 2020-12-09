@@ -161,12 +161,15 @@ function rp($angka)
                                             <td align="center"><? $telatDenda; ?></td>
                                             <td align="center"><?= $a['Status_Angsuran'] ?></td>
                                             <td align="center">
+                                                <?php if($a['Status_Angsuran']=='Belum Lunas'){?>
                                                 <a href="acc_angsuran.php?act=acc&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>&Jatuh_Tempo=<?= $a['Jatuh_Tempo']; ?>" data-toggle="tooltip" data-placement="top" title="Konfirmasi">
                                                     <button class="btn btn-icon btn-outline-primary"><i class='fas fa-check'></i></button>
                                                 </a>
+                                                <?php } else{ ?>
                                                 <a href="acc_angsuran.php?act=batal&ID_Angsuran=<?= $a['ID_Angsuran']; ?>&idp=<?= $_GET['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Batal">
                                                     <button class="btn btn-icon btn-outline-danger"><i class='fas fa-times'></i></button>
                                                 </a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

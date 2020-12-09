@@ -1,6 +1,14 @@
 <?php $menu = ''; ?>
-<?php include 'header.php'; ?>
-
+<?php include 'header.php'; 
+include 'process_form.php';?>
+<style>
+#profileDisplay {
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+  border-radius: 20px
+}
+</style>
 
 <div class="main-content">
     <div class="container-fluid">
@@ -11,18 +19,35 @@
                         <?php
                         $dtuser = mysqli_query($konek, "SELECT * FROM user WHERE ID_User='$_SESSION[ID_User]'");
                         $du     = mysqli_fetch_array($dtuser);
-                        $dtag = mysqli_query($konek, "SELECT * FROM anggota WHERE ID_User='$_SESSION[ID_User]'");
-                        $da   = mysqli_fetch_array($dtag);
+                        $dtag   = mysqli_query($konek, "SELECT * FROM anggota WHERE ID_User='$_SESSION[ID_User]'");
+                        $da     = mysqli_fetch_array($dtag);
+                        $dtfoto = mysqli_query($konek, "SELECT * FROM user INNER JOIN gambar USING(ID_User) WHERE user.ID_User='$_SESSION[ID_User]'");
+                        $df     = mysqli_fetch_array($dtfoto);
+                        // echo $df['Profil_Image'];
                         ?>
-                        <div class="text-center">
-                            <img src="img/portfolio-7.jpg" class="rounded-circle" width="150" height="150" object-fit="contain" />
-                            <?php if ($_SESSION['Level'] == 'Anggota') { ?>
-                                <h4 class="card-title mt-20"><?= $da['Nama_Anggota']; ?></h4>
-                            <?php } else { ?>
-                                <h4 class="card-title mt-20"><?= $du['Nama_Lengkap']; ?></h4>
-                            <?php } ?>
-                            <h4 class="card-title text-primary"><?= $du['Level']; ?></h4>
-                        </div>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="text-center">
+                                <?php if (!empty($msg)) : ?>
+                                    <div class="alert <?= $css_class; ?>">
+                                        <?= $msg; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="form-group text-center">
+                                    <?php if($df['Profil_Image']==null){ ?>
+                                        <a href="edit_foto.php?ID_Gambar=<?= $df['ID_Gambar']; ?>&Profil_Image=<?= $df['Profil_Image'] ?>"><img src="img/download.png" id="profileDisplay"></a>  
+                                    <?php }else { ?>
+                                        <a href="edit_foto.php?ID_Gambar=<?= $df['ID_Gambar']; ?>&Profil_Image=<?= $df['Profil_Image']; ?>"><img src="img/<?= $df['Profil_Image'] ?>" id="profileDisplay"></a>  
+                                    <?php } ?>
+                                </div>
+                                
+                                <?php if ($_SESSION['Level'] == 'Anggota') { ?>
+                                    <h4 class="card-title mt-20"><?= $da['Nama_Anggota']; ?></h4>
+                                <?php } else { ?>
+                                    <h4 class="card-title mt-20"><?= $du['Nama_Lengkap']; ?></h4>
+                                <?php } ?>
+                                <h4 class="card-title text-primary"><?= $du['Level']; ?></h4>
+                            </div>
+                        </form>
                     </div>
                     <hr class="mb-0">
                     <div class="card-body">
@@ -107,7 +132,7 @@
                                             <p class="text-danger h5"><?= $da['No_Rek']; ?></p>
                                         </div>
                                         <div class="col-md-6 h6 mb-15">Tgl Daftar
-                                            <p class="text-danger h5"><?= tgl($da['Tanggal_Entri']); ?></p>
+                                            <p class="text-danger h5"><?= $da['Tanggal_Entri']; ?></p>
                                         </div>
                                     </div>
                                 </div>
