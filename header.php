@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 function tgl($tanggal)
 {
-    $bulan_arr    = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    $bulan_arr    = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     // $hari_arr     = ['', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
     $ex           = explode('-', $tanggal);
@@ -64,7 +64,7 @@ $date->setTimeZone($timezone);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ThemeKit - Admin Template</title>
+    <title>KSP Cibinong</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -366,7 +366,7 @@ $date->setTimeZone($timezone);
                                     $help         = "active open";
                                     $text_help    = "text-danger";
                                     $help_jasa    = "active";
-                                }elseif ($menu == 'help_guide') {
+                                } elseif ($menu == 'help_guide') {
                                     $help         = "active open";
                                     $text_help    = "text-danger";
                                     $help_guide   = "active";

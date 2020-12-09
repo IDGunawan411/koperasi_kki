@@ -183,7 +183,7 @@ function rp($angka)
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">INFORMSASI SIMPANAN</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">INFORMSASI SIMPANAN WAJIB</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -198,6 +198,7 @@ function rp($angka)
                                             <div class="col-sm-12 invoice-col">
                                                 <address>
                                                     <strong>ID Simpanan</strong><br>
+<<<<<<< HEAD
                                                     <p class="text-danger h5"><?= $g['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -219,12 +220,35 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $g['Status_Simpanan']; ?></p>
+=======
+                                                    <p class="text-danger h5"><?= $w['ID_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Jenis Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Jenis_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Transaksi</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Tanggal_Transaksi']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Saldo Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Saldo_Simpanan'] ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $w['Status_Simpanan']; ?></p>
+>>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </address>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +260,7 @@ function rp($angka)
     </div>
 </div>
 
-<div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+<!-- <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -251,7 +275,7 @@ function rp($angka)
 
         </div>
     </div>
-</div>
+</div> -->
 
 <?php include 'footer.php'; ?>
 <script>

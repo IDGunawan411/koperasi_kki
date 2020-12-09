@@ -40,7 +40,7 @@ function rp($angka)
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="tambah_simpanan.php" class="btn btn-primary btn-sm" style="margin-bottom: 10px; height: auto" data-toggle="tooltip" data-placement="top" title="Tambah Data Simpanan"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a>
+                            <!-- <a href="tambah_simpanan.php" class="btn btn-primary btn-sm" style="margin-bottom: 10px; height: auto" data-toggle="tooltip" data-placement="top" title="Tambah Data Simpanan"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a> -->
                             <br>
                             <div class="dt-responsive p-4" style="overflow-x: auto;">
                                 <table class=" table table-bordered display nowrap fixed" id="alt-pg-dt" style="font-size: 16px;">
@@ -76,17 +76,18 @@ function rp($angka)
                                         $sw         = $total_sw['Total_Sukarela'];
 
                                         $sql = mysqli_query($konek, "$query");
-                                        while ($w = mysqli_fetch_array($sql)) {
-                                            $color = "color:" . ($w['Status_Simpanan'] == 'Konfirmasi' ? 'black' : 'red') . "";
+                                        while ($s = mysqli_fetch_array($sql)) {
+                                            $color = "color:" . ($s['Status_Simpanan'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                         ?>
                                             <tr style="<?= $color; ?>">
                                                 <td align="center"><?= $i++; ?></td>
-                                                <td align="center"><?= $w["ID_Simpanan"]; ?></td>
-                                                <td align="center"><?= $w["ID_Tabungan"]; ?></td>
-                                                <td><?= $w["Nama_Anggota"]; ?></td>
-                                                <td align="right"><?= $w["Tanggal_Transaksi"]; ?></td>
-                                                <td align="right"><?= rupiah($w["Saldo_Simpanan"]); ?></td>
+                                                <td align="center"><?= $s["ID_Simpanan"]; ?></td>
+                                                <td align="center"><?= $s["ID_Tabungan"]; ?></td>
+                                                <td><?= $s["Nama_Anggota"]; ?></td>
+                                                <td align="right"><?= $s["Tanggal_Transaksi"]; ?></td>
+                                                <td align="right"><?= rupiah($s["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
+<<<<<<< HEAD
                                                 <a href="#" type="button" class="btn-sm" data-toggle="modal" data-target="#myModal1<?= $w['ID_Simpanan']; ?>"><button class="btn btn-icon btn-outline-success"><i class='fa fa-image'></i></button></a>
                                                     
                                                     <div class="modal fade" id="myModal1<?= $w['ID_Simpanan']; ?>" role="dialog">
@@ -111,8 +112,12 @@ function rp($angka)
                                                             </div>
                                                         </div>
                                                     </div>
+=======
+                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $s['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $s['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $s['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $s['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $s['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $s['Saldo_Simpanan']; ?>" data-gambar="<?= $s['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
+                                                        <img src="img/<?= $s['gambar']; ?>" width="80">
+>>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </td>
-                                                <td align="center"><?= $w["Status_Simpanan"]; ?></td>
+                                                <td align="center"><?= $s["Status_Simpanan"]; ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -140,12 +145,12 @@ function rp($angka)
                     $sw         = $total_sw['Total_Sukarela'];
 
                     $sql = mysqli_query($konek, "$query");
-                    while ($w = mysqli_fetch_array($sql)) {
-                        $color = ($w['Status_Simpanan'] == 'Konfirmasi' ? 'text-success' : 'text-danger');
-                    ?>  
+                    while ($s = mysqli_fetch_array($sql)) {
+                        $color = ($s['Status_Simpanan'] == 'Konfirmasi' ? 'text-success' : 'text-danger');
+                    ?>
                         <div class="widget border shadow-sm" style="margin-bottom:2px">
                             <div class="widget-header bg-teal text-white">
-                                <h3 class="widget-title h5 font-weight-bold">- <?= $w['ID_Simpanan'] ?> -</h3>
+                                <h3 class="widget-title h5 font-weight-bold">- <?= $s['ID_Simpanan'] ?> -</h3>
                                 <div class="widget-tools pull-right">
                                     <!-- Modal Info Simpanan -->
                                     <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal<?= $w['ID_Simpanan'] ?>"></button></a>
@@ -157,17 +162,21 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Transaksi</td>
+<<<<<<< HEAD
                                         <td><?= $w['Tanggal_Transaksi']; ?></td>
+=======
+                                        <td><?= $s['Tanggal_Transaksi']; ?></td>
+>>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
                                         <td>Saldo Simpanan</td>
-                                        <td><?= rp($w['Saldo_Simpanan']); ?></td>
+                                        <td><?= rp($s['Saldo_Simpanan']); ?></td>
                                     </tr>
                                     <tr>
                                         <td><i class="ik ik-info text-info"></i></td>
                                         <td>Status Simpanan</td>
-                                        <td class="<?= $color; ?>"><?= $w['Status_Simpanan']; ?></td>
+                                        <td class="<?= $color; ?>"><?= $s['Status_Simpanan']; ?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -192,6 +201,7 @@ function rp($angka)
                                             <div class="col-sm-12 invoice-col">
                                                 <address>
                                                     <strong>ID Simpanan</strong><br>
+<<<<<<< HEAD
                                                     <p class="text-danger h5"><?= $g['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -213,6 +223,29 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $g['Status_Simpanan']; ?></p>
+=======
+                                                    <p class="text-danger h5"><?= $s['ID_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Tabungan</strong><br>
+                                                    <p class="text-danger h5"><?= $s['ID_Tabungan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Jenis Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $s['Jenis_Simpanan']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Transaksi</strong><br>
+                                                    <p class="text-danger h5"><?= $s['Tanggal_Transaksi']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Saldo Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= rp($s['Saldo_Simpanan']) ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Simpanan</strong><br>
+                                                    <p class="text-danger h5"><?= $s['Status_Simpanan']; ?></p>
+>>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </address>
                                             </div>
                                         </div>

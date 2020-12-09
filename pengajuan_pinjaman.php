@@ -35,7 +35,7 @@ function rp($angka)
                         <div class="mb-2 bg-dark rounded text-white p-2 text-center">
                             <a>PENGAJUAN PINJAMAN</a>
                         </div>
-                        <a href="tambah_pinjaman.php" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
+                        <!-- <a href="tambah_pinjaman.php" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a> -->
                         <div class="dt-responsive p-4" style="overflow-y: scroll;">
                             <table id="alt-pg-dt" class="table nowrap table-bordered">
                                 <col width="50">
@@ -78,16 +78,16 @@ function rp($angka)
                                         $color = "color:" . ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                     ?>
                                         <tr style="<?= $color; ?>">
-                                            <td align="center"><?= $i; ?></td>
-                                            <td align="center"><?= $p["ID_Pinjaman"]; ?></td>
-                                            <td align="center"><?= $p["Tgl_Entri"]; ?></td>
-                                            <td align="center"><?= $p["Nama_Anggota"]; ?></td>
-                                            <td align="center"><?= $p["Nama_Pinjaman"]; ?></td>
-                                            <td align="right"><?= rupiah($p["Besar_Pinjaman"]); ?></td>
-                                            <td align="center"><?= $p["Lama_Angsuran"]; ?>x</td>
-                                            <td align="right"><?= $p["Bunga"]; ?>%</td>
-                                            <td align="right"><?= rupiah($p["Besar_Angsuran"]); ?></td>
-                                            <td align="center"><?= $p["Status_Pinjaman"] ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $i; ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["ID_Pinjaman"]; ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["Tgl_Entri"]; ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["Nama_Anggota"]; ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["Nama_Pinjaman"]; ?></td>
+                                            <td align="right" style="font-size: 14px;"><?= rupiah($p["Besar_Pinjaman"]); ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["Lama_Angsuran"]; ?>x</td>
+                                            <td align="right" style="font-size: 14px;"><?= $p["Bunga"]; ?>%</td>
+                                            <td align="right" style="font-size: 14px;"><?= rupiah($p["Besar_Angsuran"]); ?></td>
+                                            <td align="center" style="font-size: 14px;"><?= $p["Status_Pinjaman"] ?></td>
                                             <?php if ($_SESSION['Level'] == 'Petugas') { ?>
                                                 <td align="center">
                                                     <?php if ($p['Status_Pinjaman'] == 'Menunggu') { ?>

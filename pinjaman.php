@@ -46,7 +46,7 @@ function rp($angka)
                             </div>
                             <a href="tambah_pinjaman.php" class="mb-2 btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
                             <div class="dt-responsive p-4" style="overflow-y: scroll;">
-                                <table id="alt-pg-dt" class="table nowrap table-bordered">
+                                <table id="alt-pg-dt" class="table nowrap table-bordered" style="font-size: 18px;">
                                     <!-- <col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
                                     <col width="50px"> -->
                                     <thead>
@@ -74,16 +74,16 @@ function rp($angka)
                                             $color = "color:" . ($p['Status_Pinjaman'] == 'Konfirmasi' ? 'black' : 'red') . "";
                                         ?>
                                             <tr style="<?= $color; ?>">
-                                                <td align="center"><?= $i; ?></td>
-                                                <td align="center"><?= $p["ID_Pinjaman"]; ?></td>
-                                                <td align="center"><?= $p["Tgl_Entri"]; ?></td>
-                                                <td align="center"><?= $p["Nama_Anggota"]; ?></td>
-                                                <td align="center"><?= $p["Nama_Pinjaman"]; ?></td>
-                                                <td align="right"><?= rupiah($p["Besar_Pinjaman"]); ?></td>
-                                                <td align="center"><?= $p["Lama_Angsuran"]; ?>x</td>
-                                                <td align="right"><?= $p["Bunga"]; ?>%</td>
-                                                <td align="right"><?= rupiah($p["Besar_Angsuran"]); ?></td>
-                                                <td align="center"><?= $p["Status_Pinjaman"] ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $i; ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["ID_Pinjaman"]; ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["Tgl_Entri"]; ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["Nama_Anggota"]; ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["Nama_Pinjaman"]; ?></td>
+                                                <td align="right" style="font-size: 14px;"><?= rupiah($p["Besar_Pinjaman"]); ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["Lama_Angsuran"]; ?>x</td>
+                                                <td align="right" style="font-size: 14px;"><?= $p["Bunga"]; ?>%</td>
+                                                <td align="right" style="font-size: 14px;"><?= rupiah($p["Besar_Angsuran"]); ?></td>
+                                                <td align="center" style="font-size: 14px;"><?= $p["Status_Pinjaman"] ?></td>
                                                 <td>
                                                     <a href="angsuran.php?ID_Pinjaman=<?= $p['ID_Pinjaman']; ?>" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat Angsuran">
                                                         <button class="btn btn-icon btn-outline-primary"><i class='fa fa-list'></i></button>
@@ -241,6 +241,7 @@ function rp($angka)
                                         </button>
                                     </div>
                                     <div class="modal-body">
+<<<<<<< HEAD
                                     <?php
                                         $id = $p['ID_Pinjaman'];
                                         $gid=mysqli_query($konek, "SELECT * FROM angsuran WHERE ID_Pinjaman='$id'");
@@ -290,6 +291,52 @@ function rp($angka)
                                             </div>
                                         </div>
                                     <?php } ?>
+=======
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-12 invoice-col">
+                                                <address>
+                                                    <strong>ID Pinjaman</strong><br>
+                                                    <p class="text-danger h5"><?= $p['ID_Pinjaman']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>ID Anggota</strong><br>
+                                                    <p class="text-danger h5"><?= $p['ID_Anggota']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Nama Pinjaman</strong><br>
+                                                    <p class="text-danger h5"><?= $p['Nama_Pinjaman']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Besar Pinjaman</strong><br>
+                                                    <p class="text-danger h5"><?= rp($p['Besar_Pinjaman']); ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Besar Angsuran</strong><br>
+                                                    <p class="text-danger h5"><?= rp($p['Besar_Angsuran']) ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Lama Angsuran</strong><br>
+                                                    <p class="text-danger h5"><?= $p['Lama_Angsuran']; ?>x</p>
+                                                </address>
+                                                <address>
+                                                    <strong>Bunga</strong><br>
+                                                    <p class="text-danger h5"><?= $p['Bunga']; ?>%</p>
+                                                </address>
+                                                <address>
+                                                    <strong>Tanggal Pinjam</strong><br>
+                                                    <p class="text-danger h5"><?= $p['Tgl_Entri']; ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Jatuh Tempo</strong><br>
+                                                    <p class="text-danger h5"><?= tgl($p['Jatuh_Tempo']); ?></p>
+                                                </address>
+                                                <address>
+                                                    <strong>Status Pinjaman</strong><br>
+                                                    <p class="text-danger h5"><?= $p['Status_Pinjaman']; ?></p>
+                                                </address>
+                                            </div>
+                                        </div>
+>>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
