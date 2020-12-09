@@ -198,7 +198,6 @@ function rp($angka)
                                             <div class="col-sm-12 invoice-col">
                                                 <address>
                                                     <strong>ID Simpanan</strong><br>
-<<<<<<< HEAD
                                                     <p class="text-danger h5"><?= $g['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -220,7 +219,6 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $g['Status_Simpanan']; ?></p>
-=======
                                                     <p class="text-danger h5"><?= $w['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -242,7 +240,6 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $w['Status_Simpanan']; ?></p>
->>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </address>
                                             </div>
                                         </div>
@@ -285,6 +282,7 @@ function rp($angka)
             console.log(gambar);
             $('#gambar').attr('src', 'img/' + gambar);
             $('#view').text(view);
+            
         })
     })
 </script>

@@ -146,7 +146,7 @@ function rp($angka)
                                         <td>Sisa Angsuran</td>
                                         <?php
                                             $sa=mysqli_query($konek,"SELECT COUNT(ID_Angsuran) as sisa_angsuran FROM `angsuran` INNER JOIN anggota on anggota.ID_Anggota = angsuran.ID_Anggota 
-                                            WHERE Status_Angsuran = 'Lunas' AND ID_Pinjaman='$p[ID_Pinjaman]' AND anggota.ID_User='$_SESSION[ID_User]'");
+                                            WHERE Status_Angsuran = 'Belum Lunas' AND ID_Pinjaman='$p[ID_Pinjaman]' AND anggota.ID_User='$_SESSION[ID_User]'");
                                             $dsa=mysqli_fetch_array($sa);
                                         ?>
                                         <?php if($dsa['sisa_angsuran']=='0'){ ?>
@@ -241,22 +241,21 @@ function rp($angka)
                                         </button>
                                     </div>
                                     <div class="modal-body">
-<<<<<<< HEAD
-                                    <?php
-                                        $id = $p['ID_Pinjaman'];
-                                        $gid=mysqli_query($konek, "SELECT * FROM angsuran WHERE ID_Pinjaman='$id'");
-                                        while($g=mysqli_fetch_array($gid)){
-                                            if($g['Denda']==null){
-                                                $Denda = "-";
-                                            }else{
-                                                $Denda = $g['Denda'];
-                                            }
-                                            if($g['Tgl_Entri']==null){
-                                                $tgl_konfirmasi = "-";
-                                            }else{
-                                                $tgl_konfirmasi = tgl($g['Tgl_Entri']);
-                                            }
-                                    ?>
+                                        <?php
+                                            $id = $p['ID_Pinjaman'];
+                                            $gid=mysqli_query($konek, "SELECT * FROM angsuran WHERE ID_Pinjaman='$id'");
+                                            while($g=mysqli_fetch_array($gid)){
+                                                if($g['Denda']==null){
+                                                    $Denda = "-";
+                                                }else{
+                                                    $Denda = $g['Denda'];
+                                                }
+                                                if($g['Tgl_Entri']==null){
+                                                    $tgl_konfirmasi = "-";
+                                                }else{
+                                                    $tgl_konfirmasi = tgl($g['Tgl_Entri']);
+                                                }
+                                        ?>
                                         <div class="row invoice-info">
                                             <div class="border-bottom border-dark shadow-sm p-2 col-md-12">
                                                 <h5 class="text-center"><?= $g['Angsuran']; ?></h5>
@@ -290,53 +289,7 @@ function rp($angka)
                                                 </table>
                                             </div>
                                         </div>
-                                    <?php } ?>
-=======
-                                        <div class="row invoice-info">
-                                            <div class="col-sm-12 invoice-col">
-                                                <address>
-                                                    <strong>ID Pinjaman</strong><br>
-                                                    <p class="text-danger h5"><?= $p['ID_Pinjaman']; ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>ID Anggota</strong><br>
-                                                    <p class="text-danger h5"><?= $p['ID_Anggota']; ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Nama Pinjaman</strong><br>
-                                                    <p class="text-danger h5"><?= $p['Nama_Pinjaman']; ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Besar Pinjaman</strong><br>
-                                                    <p class="text-danger h5"><?= rp($p['Besar_Pinjaman']); ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Besar Angsuran</strong><br>
-                                                    <p class="text-danger h5"><?= rp($p['Besar_Angsuran']) ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Lama Angsuran</strong><br>
-                                                    <p class="text-danger h5"><?= $p['Lama_Angsuran']; ?>x</p>
-                                                </address>
-                                                <address>
-                                                    <strong>Bunga</strong><br>
-                                                    <p class="text-danger h5"><?= $p['Bunga']; ?>%</p>
-                                                </address>
-                                                <address>
-                                                    <strong>Tanggal Pinjam</strong><br>
-                                                    <p class="text-danger h5"><?= $p['Tgl_Entri']; ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Jatuh Tempo</strong><br>
-                                                    <p class="text-danger h5"><?= tgl($p['Jatuh_Tempo']); ?></p>
-                                                </address>
-                                                <address>
-                                                    <strong>Status Pinjaman</strong><br>
-                                                    <p class="text-danger h5"><?= $p['Status_Pinjaman']; ?></p>
-                                                </address>
-                                            </div>
-                                        </div>
->>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
+                                        <?php } ?>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

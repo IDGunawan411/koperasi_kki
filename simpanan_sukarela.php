@@ -87,11 +87,12 @@ function rp($angka)
                                                 <td align="right"><?= $s["Tanggal_Transaksi"]; ?></td>
                                                 <td align="right"><?= rupiah($s["Saldo_Simpanan"]); ?></td>
                                                 <td align="center">
-<<<<<<< HEAD
-                                                <a href="#" type="button" class="btn-sm" data-toggle="modal" data-target="#myModal1<?= $w['ID_Simpanan']; ?>"><button class="btn btn-icon btn-outline-success"><i class='fa fa-image'></i></button></a>
                                                     
-                                                    <div class="modal fade" id="myModal1<?= $w['ID_Simpanan']; ?>" role="dialog">
+                                                <a href="#" type="button" class="btn-sm" data-toggle="modal" data-target="#myModal1<?= $s['ID_Simpanan']; ?>"><button class="btn btn-icon btn-outline-success"><i class='fa fa-image'></i></button></a>
+                                                    
+                                                    <div class="modal fade" id="myModal1<?= $s['ID_Simpanan']; ?>" role="dialog">
                                                         <div class="modal-dialog modal-lg">
+
                                                             <!-- Modal content-->
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -99,7 +100,7 @@ function rp($angka)
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <?php
-                                                                        $id = $w['ID_Simpanan'];
+                                                                        $id = $s['ID_Simpanan'];
                                                                         $query_view = mysqli_query($konek, "SELECT * FROM Simpanan WHERE ID_Simpanan='$id'");
                                                                         //$result = mysqli_query($conn, $query);
                                                                         $data = mysqli_fetch_assoc($query_view) ?>
@@ -112,10 +113,6 @@ function rp($angka)
                                                             </div>
                                                         </div>
                                                     </div>
-=======
-                                                    <a id="view" data-toggle="modal" data-target="#editLayoutItem" data-ID_Simpanan="<?= $s['ID_Simpanan']; ?>" data-ID_Tabungan="<?= $s['ID_Tabungan']; ?>" data-Jenis_Simpanan="<?= $s['Jenis_Simpanan']; ?>" data-Nama_Anggota="<?= $s['Nama_Anggota']; ?>" data-Tanggal_Transaksi="<?= $s['Tanggal_Transaksi']; ?>" data-Saldo_Simpanan="<?= $s['Saldo_Simpanan']; ?>" data-gambar="<?= $s['gambar']; ?>" class=" w-40 w-sm-100" data-toggle="tooltip" data-placement="top" title="Klik untuk melihat gambar ukuran besar">
-                                                        <img src="img/<?= $s['gambar']; ?>" width="80">
->>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </td>
                                                 <td align="center"><?= $s["Status_Simpanan"]; ?></td>
                                             </tr>
@@ -153,7 +150,7 @@ function rp($angka)
                                 <h3 class="widget-title h5 font-weight-bold">- <?= $s['ID_Simpanan'] ?> -</h3>
                                 <div class="widget-tools pull-right">
                                     <!-- Modal Info Simpanan -->
-                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal<?= $w['ID_Simpanan'] ?>"></button></a>
+                                    <a href="#"><button class="btn btn-sm btn-widget-tool ik ik-info text-white" data-toggle="modal" data-target="#exampleModal<?= $s['ID_Simpanan'] ?>"></button></a>
                                     <button type="button" class="btn btn-sm btn-widget-tool minimize-widget text-white ik ik-minus"></button>
                                 </div>
                             </div>
@@ -162,11 +159,7 @@ function rp($angka)
                                     <tr>
                                         <td><i class="fas fa-clipboard-list text-primary"></i></td>
                                         <td>Tanggal Transaksi</td>
-<<<<<<< HEAD
-                                        <td><?= $w['Tanggal_Transaksi']; ?></td>
-=======
                                         <td><?= $s['Tanggal_Transaksi']; ?></td>
->>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-clipboard-check text-success"></i></td>
@@ -182,7 +175,7 @@ function rp($angka)
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal<?= $w['ID_Simpanan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal<?= $s['ID_Simpanan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -192,7 +185,7 @@ function rp($angka)
                                         </button>
                                     </div>
                                     <?php
-                                    $id = $w['ID_Simpanan'];
+                                    $id = $s['ID_Simpanan'];
                                     $gid=mysqli_query($konek, "SELECT * FROM simpanan WHERE ID_Simpanan='$id'");
                                     $g=mysqli_fetch_array($gid);
                                     ?>
@@ -201,7 +194,6 @@ function rp($angka)
                                             <div class="col-sm-12 invoice-col">
                                                 <address>
                                                     <strong>ID Simpanan</strong><br>
-<<<<<<< HEAD
                                                     <p class="text-danger h5"><?= $g['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -223,7 +215,6 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $g['Status_Simpanan']; ?></p>
-=======
                                                     <p class="text-danger h5"><?= $s['ID_Simpanan']; ?></p>
                                                 </address>
                                                 <address>
@@ -245,7 +236,6 @@ function rp($angka)
                                                 <address>
                                                     <strong>Status Simpanan</strong><br>
                                                     <p class="text-danger h5"><?= $s['Status_Simpanan']; ?></p>
->>>>>>> 3191a7719d9029ec20266cf03adc5f0af47f621f
                                                 </address>
                                             </div>
                                         </div>
@@ -263,30 +253,4 @@ function rp($angka)
     </div>
 </div>
 
-<div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editLayoutItemLabel">Sed id mi non quam iaculis pulvinar.</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-md-12" align="center">
-                    <img class="img-fluid" id="gambar" width="900" height="600">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 <?php include 'footer.php'; ?>
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '#view', function() {
-            var gambar = $(this).data('gambar');
-            console.log(gambar);
-            $('#gambar').attr('src', 'img/' + gambar);
-            $('#view').text(view);
-        })
-    })
-</script>

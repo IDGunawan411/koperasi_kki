@@ -71,7 +71,7 @@
                                                     //simpan data anggota
                                                     mysqli_query($konek, "INSERT INTO `anggota` (`ID_Anggota`, `ID_Tabungan`, `ID_User`, `Nama_Anggota`, `Jenis_Kelamin`, `Tempat_Lahir`, `Tanggal_Lahir`,`Pendidikan_Terakhir`, `Status_Perkawinan`, `Simpanan_Pokok`, `No_KTP`, `No_KK`, `No_Telp`, `No_Rek`, `Tanggal_Entri`, `Alamat`)
                                             VALUES ('$idAnggota', '$idTabungan', '$idUser', '$namaAnggota', '$jenisKelamin', '$tempatLahir', '$tanggalLahir', '$pendidikanTerakhir', '$statusPerkawinan', '$simpananPokok', '$noKtp', '$noKK', '$noTelp', '$noRek', '$tanggalEntri', '$alamat')");
-
+                                                
                                                     //simpan data tabungan
                                                     mysqli_query($konek, "INSERT INTO `tabungan` (`ID_Tabungan`, `ID_Anggota`, `Tgl_Mulai`, `Besar_Tabungan`)
                                             VALUES ('$idTabungan', '$idAnggota', '$tanggalEntri', '$simpananPokok');");
